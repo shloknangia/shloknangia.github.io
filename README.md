@@ -1,3 +1,3 @@
 # portfolio
-My personal web page
-Hi!
+My personal web page.
+
