@@ -110,7 +110,7 @@ gulp.task('server', () => {
 // Deploy
 // ===========================================
 gulp.task('deploy', () => {
-  gulp.src('./out/**/*')
+  return gulp.src('./out/**/*')
     .pipe(ghPages({
       branch: 'master'
     }));
