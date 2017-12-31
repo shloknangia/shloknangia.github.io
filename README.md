@@ -1,3 +1,3 @@
-# portfolio
-My personal web page.
+# Portfolio
+My personal web page with my contact information.
 
