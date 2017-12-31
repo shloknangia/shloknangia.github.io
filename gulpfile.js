@@ -38,7 +38,7 @@ gulp.task('vulcanize', () => {
 // ===========================================
 
 gulp.task('move', () => {
-    gulp.src('src/simone.appcache')
+    gulp.src('src/shlok.appcache')
         .pipe(gulp.dest('out/'))
 });
 
