@@ -9,3 +9,6 @@ Amazing CSS transition effects One can use
 
 ## 4. [Snakes Game](https://shloknangia.github.io/Snakes-Game/)
 Under Development :-)
+
+## 5. [Pdf Merge App](https://shloknangia.github.io/pdf-merge-app/)
+Merge n number of pdfs into one
