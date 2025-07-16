@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
@@ -13,18 +13,18 @@ What is Web Worker ?
 We know that Javascript is a single threaded language, therefore, multiple scripts cannot be executed at the same time as it has been designed to work in a single threaded environment.
 Consider a scenario in which you need to perform numerous tasks, such as pre-processing a huge quantity of API data, Unit conversion, and so on now during these computations, CPU usage will be high and Javascript will cause your web page to hang.">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/blog/web-workers/">
+<link rel="canonical" href="https://shloknangia.github.io/blog/web-workers/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.c3ca23a48ce99a8d19e69d0d8634d0ace27503a74f8d89ecf07be73a0db7d1ec.css" integrity="sha256-w8ojpIzpmo0Z5p0NhjTQrOJ1A6dPjYns8HvnOg230ew=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.555af97124d54bb1457985dd081b8f5616a48103aafeb30ac89fde835d65aa6c.js" integrity="sha256-VVr5cSTVS7FFeYXdCBuPVhakgQOq/rMKyJ/eg11lqmw="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://shloknangia.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://shloknangia.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://shloknangia.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://shloknangia.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://shloknangia.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/blog/web-workers/">
+<link rel="alternate" hreflang="en" href="https://shloknangia.github.io/blog/web-workers/">
 <noscript>
     <style>
         #theme-toggle,
@@ -68,7 +68,7 @@ What is Web Worker ?
 We know that Javascript is a single threaded language, therefore, multiple scripts cannot be executed at the same time as it has been designed to work in a single threaded environment.
 Consider a scenario in which you need to perform numerous tasks, such as pre-processing a huge quantity of API data, Unit conversion, and so on now during these computations, CPU usage will be high and Javascript will cause your web page to hang." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/blog/web-workers/" />
+<meta property="og:url" content="https://shloknangia.github.io/blog/web-workers/" />
 <meta property="og:image" content="https://cdn-images-1.medium.com/max/10844/0*7LLW5HcaI43eq0nL" /><meta property="article:section" content="blog" />
 
 
@@ -92,13 +92,13 @@ Consider a scenario in which you need to perform numerous tasks, such as pre-pro
       "@type": "ListItem",
       "position":  1 ,
       "name": "Blogs",
-      "item": "http://localhost:1313/blog/"
+      "item": "https://shloknangia.github.io/blog/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "Unleashing Web Workers in Angular: A Developer’s Guide",
-      "item": "http://localhost:1313/blog/web-workers/"
+      "item": "https://shloknangia.github.io/blog/web-workers/"
     }
   ]
 }
@@ -120,14 +120,14 @@ Consider a scenario in which you need to perform numerous tasks, such as pre-pro
   "dateModified": "0001-01-01T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://localhost:1313/blog/web-workers/"
+    "@id": "https://shloknangia.github.io/blog/web-workers/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "Shlok Nangia",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://localhost:1313/favicon.ico"
+      "url": "https://shloknangia.github.io/favicon.ico"
     }
   }
 }
@@ -149,7 +149,7 @@ Consider a scenario in which you need to perform numerous tasks, such as pre-pro
 <header class="header sticky-header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Shlok Nangia (Alt + H)">Shlok Nangia</a>
+            <a href="https://shloknangia.github.io/" accesskey="h" title="Shlok Nangia (Alt + H)">Shlok Nangia</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -177,22 +177,27 @@ Consider a scenario in which you need to perform numerous tasks, such as pre-pro
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/" title="Home">
+                <a href="https://shloknangia.github.io/" title="Home">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/blog" title="Blog">
+                <a href="https://shloknangia.github.io/blog" title="Blog">
                     <span>Blog</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/experience" title="Experience">
+                <a href="https://shloknangia.github.io/projects" title="Projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://shloknangia.github.io/experience" title="Experience">
                     <span>Experience</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/search" title="Search (Alt &#43; /)" accesskey=/>
+                <a href="https://shloknangia.github.io/search" title="Search (Alt &#43; /)" accesskey=/>
                     <span>Search</span>
                 </a>
             </li>
@@ -203,7 +208,7 @@ Consider a scenario in which you need to perform numerous tasks, such as pre-pro
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/blog/">Blogs</a></div>
+    <div class="breadcrumbs"><a href="https://shloknangia.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://shloknangia.github.io/blog/">Blogs</a></div>
     <h1 class="post-title">
       Unleashing Web Workers in Angular: A Developer’s Guide
     </h1>
@@ -414,16 +419,16 @@ export class CurrencyComponent implements OnInit {
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/angular/">Angular</a></li>
-      <li><a href="http://localhost:1313/tags/typescript/">TypeScript</a></li>
-      <li><a href="http://localhost:1313/tags/multithreading/">Multithreading</a></li>
+      <li><a href="https://shloknangia.github.io/tags/angular/">Angular</a></li>
+      <li><a href="https://shloknangia.github.io/tags/typescript/">Typescript</a></li>
+      <li><a href="https://shloknangia.github.io/tags/multithreading/">Multithreading</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2025 <a href="http://localhost:1313/">Shlok Nangia</a></span>
+    <span>&copy; 2025 <a href="https://shloknangia.github.io/">Shlok Nangia</a></span>
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">

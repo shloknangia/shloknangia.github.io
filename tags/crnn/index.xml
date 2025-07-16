@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>CRNN on Shlok Nangia</title>
-    <link>http://localhost:1313/tags/crnn/</link>
+    <link>https://shloknangia.github.io/tags/crnn/</link>
     <description>Recent content in CRNN on Shlok Nangia</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://localhost:1313/tags/crnn/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://shloknangia.github.io/tags/crnn/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Automated Image Captioning (Bachelor Thesis)</title>
-      <link>http://localhost:1313/projects/automated-image-captioning/</link>
+      <title>Analyzing Iowa Liquor Sales Data</title>
+      <link>https://shloknangia.github.io/projects/1_iowa/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/projects/automated-image-captioning/</guid>
-      <description>Can computers summarize the contents of an image?</description>
+      <guid>https://shloknangia.github.io/projects/1_iowa/</guid>
+      <description>Programming for Big Data I (CMPT 732), Simon Fraser University</description>
     </item>
     
   </channel>

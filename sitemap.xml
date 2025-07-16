@@ -2,152 +2,98 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/blog/command-line-tools/</loc>
+    <loc>https://shloknangia.github.io/blog/command-line-tools/</loc>
   </url><url>
-    <loc>http://localhost:1313/blog/fake-news/</loc>
+    <loc>https://shloknangia.github.io/blog/fake-news/</loc>
   </url><url>
-    <loc>http://localhost:1313/blog/pandas-profiling/</loc>
+    <loc>https://shloknangia.github.io/blog/pandas-profiling/</loc>
   </url><url>
-    <loc>http://localhost:1313/blog/web-workers/</loc>
+    <loc>https://shloknangia.github.io/blog/web-workers/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/obsidian-publish-github-action/</loc>
+    <loc>https://shloknangia.github.io/projects/1_iowa/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/kindle-to-notion/</loc>
+    <loc>https://shloknangia.github.io/projects/2_matbot/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/automated-image-captioning/</loc>
+    <loc>https://shloknangia.github.io/experience/1_slb/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/todo-list-app/</loc>
+    <loc>https://shloknangia.github.io/experience/2_sfu_ta/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/face-landmarks-detection/</loc>
+    <loc>https://shloknangia.github.io/experience/3_bc_hydro/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/gaze-tracking-goggles/</loc>
+    <loc>https://shloknangia.github.io/experience/4_sfu_ta/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/openquad/</loc>
+    <loc>https://shloknangia.github.io/experience/5_slb/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/search-and-reconnaissance-robot/</loc>
+    <loc>https://shloknangia.github.io/experience/6_bcil/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/sebart-pro/</loc>
+    <loc>https://shloknangia.github.io/experience/7_infotel/</loc>
   </url><url>
-    <loc>http://localhost:1313/experience/1_slb/</loc>
+    <loc>https://shloknangia.github.io/experience/8_nhpc/</loc>
   </url><url>
-    <loc>http://localhost:1313/experience/2_sfu_ta/</loc>
+    <loc>https://shloknangia.github.io/tags/ai/</loc>
   </url><url>
-    <loc>http://localhost:1313/experience/3_bc_hydro/</loc>
+    <loc>https://shloknangia.github.io/tags/android/</loc>
   </url><url>
-    <loc>http://localhost:1313/experience/4_sfu_ta/</loc>
+    <loc>https://shloknangia.github.io/tags/angular/</loc>
   </url><url>
-    <loc>http://localhost:1313/experience/5_slb/</loc>
+    <loc>https://shloknangia.github.io/tags/aws/</loc>
   </url><url>
-    <loc>http://localhost:1313/experience/6_bcil/</loc>
+    <loc>https://shloknangia.github.io/tags/azure/</loc>
   </url><url>
-    <loc>http://localhost:1313/experience/7_infotel/</loc>
+    <loc>https://shloknangia.github.io/tags/big-data/</loc>
   </url><url>
-    <loc>http://localhost:1313/experience/8_nhpc/</loc>
+    <loc>https://shloknangia.github.io/blog/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/ai/</loc>
+    <loc>https://shloknangia.github.io/tags/c%23/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/android/</loc>
+    <loc>https://shloknangia.github.io/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/angular/</loc>
+    <loc>https://shloknangia.github.io/tags/cnn/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/arduino/</loc>
+    <loc>https://shloknangia.github.io/tags/crnn/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/automation/</loc>
+    <loc>https://shloknangia.github.io/tags/cybersecurity/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/aws/</loc>
+    <loc>https://shloknangia.github.io/tags/data-analysis/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/azure/</loc>
+    <loc>https://shloknangia.github.io/tags/dl/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/bash/</loc>
+    <loc>https://shloknangia.github.io/experience/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/big-data/</loc>
+    <loc>https://shloknangia.github.io/tags/java/</loc>
   </url><url>
-    <loc>http://localhost:1313/blog/</loc>
+    <loc>https://shloknangia.github.io/tags/javascript/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/c%23/</loc>
+    <loc>https://shloknangia.github.io/tags/langchain/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/c&#43;&#43;/</loc>
+    <loc>https://shloknangia.github.io/tags/linux/</loc>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://shloknangia.github.io/tags/llm/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/cnn/</loc>
+    <loc>https://shloknangia.github.io/tags/lstm/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/computer-vision/</loc>
+    <loc>https://shloknangia.github.io/tags/microservices/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/crnn/</loc>
+    <loc>https://shloknangia.github.io/tags/ml/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/css/</loc>
+    <loc>https://shloknangia.github.io/tags/multithreading/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/cybersecurity/</loc>
+    <loc>https://shloknangia.github.io/tags/pandas/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/data-analysis/</loc>
+    <loc>https://shloknangia.github.io/tags/program-synthesis/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/dl/</loc>
+    <loc>https://shloknangia.github.io/projects/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/docker/</loc>
+    <loc>https://shloknangia.github.io/tags/python/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/drone/</loc>
+    <loc>https://shloknangia.github.io/tags/pytorch/</loc>
   </url><url>
-    <loc>http://localhost:1313/experience/</loc>
+    <loc>https://shloknangia.github.io/search/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/frontend-development/</loc>
+    <loc>https://shloknangia.github.io/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/github-action/</loc>
+    <loc>https://shloknangia.github.io/tags/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/github-actions/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/html/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/java/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/javascript/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/langchain/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/linux/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/llm/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/lstm/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/microservices/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/mkdocs/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/ml/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/multithreading/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/node.js/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/nodejs/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/pandas/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/program-synthesis/</loc>
-  </url><url>
-    <loc>http://localhost:1313/projects/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/python/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/pytorch/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/raspberry-pi/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/react/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/regex/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/robotics/</loc>
-  </url><url>
-    <loc>http://localhost:1313/search/</loc>
-  </url><url>
-    <loc>http://localhost:1313/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/typescript/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/web-development/</loc>
+    <loc>https://shloknangia.github.io/tags/typescript/</loc>
   </url>
 </urlset>

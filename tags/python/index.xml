@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Python on Shlok Nangia</title>
-    <link>http://localhost:1313/tags/python/</link>
+    <link>https://shloknangia.github.io/tags/python/</link>
     <description>Recent content in Python on Shlok Nangia</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://localhost:1313/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://shloknangia.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The Magic of Pandas Profiling</title>
-      <link>http://localhost:1313/blog/pandas-profiling/</link>
+      <link>https://shloknangia.github.io/blog/pandas-profiling/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/blog/pandas-profiling/</guid>
+      <guid>https://shloknangia.github.io/blog/pandas-profiling/</guid>
       <description>&lt;h1 id=&#34;the-magic-of-pandas-profiling&#34;&gt;The Magic of Pandas Profiling&lt;/h1&gt;
 &lt;p&gt;Imagine having a tool that can unravel the mysteries hidden within your datasets, help you understand your data variables with great confidence even before you start working on your dataset. And all that with just 3 lines of code, therefore, making exploratory data analysis a breeze.&lt;/p&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://cdn-images-1.medium.com/max/2000/0*tGdKowtoyJm-1KLA.gif&#34; alt=&#34;&#34;  /&gt;
@@ -20,56 +20,29 @@
     </item>
     
     <item>
-      <title>Automated Image Captioning (Bachelor Thesis)</title>
-      <link>http://localhost:1313/projects/automated-image-captioning/</link>
+      <title>Analyzing Iowa Liquor Sales Data</title>
+      <link>https://shloknangia.github.io/projects/1_iowa/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/projects/automated-image-captioning/</guid>
-      <description>Can computers summarize the contents of an image?</description>
+      <guid>https://shloknangia.github.io/projects/1_iowa/</guid>
+      <description>Programming for Big Data I (CMPT 732), Simon Fraser University</description>
     </item>
     
     <item>
-      <title>Face Landmarks Detection using CNN</title>
-      <link>http://localhost:1313/projects/face-landmarks-detection/</link>
+      <title>Smart Speaker - Matbot</title>
+      <link>https://shloknangia.github.io/projects/2_matbot/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/projects/face-landmarks-detection/</guid>
-      <description>Can computers really understand the human face?</description>
-    </item>
-    
-    <item>
-      <title>Gaze-tracking Goggles</title>
-      <link>http://localhost:1313/projects/gaze-tracking-goggles/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/projects/gaze-tracking-goggles/</guid>
-      <description>Smart Goggles for Gaze Analysis</description>
-    </item>
-    
-    <item>
-      <title>OpenQuad</title>
-      <link>http://localhost:1313/projects/openquad/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/projects/openquad/</guid>
-      <description>Open-souce platform for drone automation</description>
-    </item>
-    
-    <item>
-      <title>Search and Reconnaissance Robot</title>
-      <link>http://localhost:1313/projects/search-and-reconnaissance-robot/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/projects/search-and-reconnaissance-robot/</guid>
-      <description>An all-terrain robot for disaster management!</description>
+      <guid>https://shloknangia.github.io/projects/2_matbot/</guid>
+      <description>Major Project, Delhi Technological University</description>
     </item>
     
     <item>
       <title>Senior Software Engineer</title>
-      <link>http://localhost:1313/experience/1_slb/</link>
+      <link>https://shloknangia.github.io/experience/1_slb/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/experience/1_slb/</guid>
+      <guid>https://shloknangia.github.io/experience/1_slb/</guid>
       <description>SLB (Formerly, Schlumberger) | Calgary, Canada</description>
     </item>
     

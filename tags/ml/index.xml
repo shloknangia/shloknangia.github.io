@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>ML on Shlok Nangia</title>
-    <link>http://localhost:1313/tags/ml/</link>
+    <link>https://shloknangia.github.io/tags/ml/</link>
     <description>Recent content in ML on Shlok Nangia</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://localhost:1313/tags/ml/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://shloknangia.github.io/tags/ml/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The Truth Behind Fake News: Tools and Techniques for Detection</title>
-      <link>http://localhost:1313/blog/fake-news/</link>
+      <link>https://shloknangia.github.io/blog/fake-news/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/blog/fake-news/</guid>
+      <guid>https://shloknangia.github.io/blog/fake-news/</guid>
       <description>&lt;h1 id=&#34;the-truth-behind-fake-news-tools-and-techniques-for-detection&#34;&gt;The Truth Behind Fake News: Tools and Techniques for Detection&lt;/h1&gt;
 &lt;p&gt;Authors: Linsong, Shlok Nangia, Jialiang Guo (3_datamen)&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;This blog is written and maintained by students in the Master of Science in Professional Computer Science Program at Simon Fraser University as part of their course credit. To learn more about this unique program, please visit &lt;a href=&#34;https://www.sfu.ca/computing/current-students/graduate-students/academic-programs/professional-master-of-science-in-computer-science.html&#34;&gt;sfu.ca/computing/mpcs&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
@@ -22,11 +22,20 @@
     </item>
     
     <item>
-      <title>Senior Software Engineer</title>
-      <link>http://localhost:1313/experience/1_slb/</link>
+      <title>Smart Speaker - Matbot</title>
+      <link>https://shloknangia.github.io/projects/2_matbot/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/experience/1_slb/</guid>
+      <guid>https://shloknangia.github.io/projects/2_matbot/</guid>
+      <description>Major Project, Delhi Technological University</description>
+    </item>
+    
+    <item>
+      <title>Senior Software Engineer</title>
+      <link>https://shloknangia.github.io/experience/1_slb/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://shloknangia.github.io/experience/1_slb/</guid>
       <description>SLB (Formerly, Schlumberger) | Calgary, Canada</description>
     </item>
     
