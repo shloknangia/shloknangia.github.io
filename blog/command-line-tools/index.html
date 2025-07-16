@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Streamlining Data Manipulation with the power of Command Line tools | Shlok Nangia</title>
+<meta name="keywords" content="Linux">
+<meta name="description" content="Streamlining Data Manipulation with the power of Command Line tools
+Authors: Linsong, Shlok Nangia, Jialiang Guo (3_datamen)
+This blog is written and maintained by students in the Master of Science in Professional Computer Science Program at Simon Fraser University as part of their course credit. To learn more about this unique program, please visit sfu.ca/computing/mpcs.
+Do you know you can “clean and manipulate data” from a document without even opening the documents. Yes, you read that right! No need for any text editor.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/blog/command-line-tools/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.c3ca23a48ce99a8d19e69d0d8634d0ace27503a74f8d89ecf07be73a0db7d1ec.css" integrity="sha256-w8ojpIzpmo0Z5p0NhjTQrOJ1A6dPjYns8HvnOg230ew=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.555af97124d54bb1457985dd081b8f5616a48103aafeb30ac89fde835d65aa6c.js" integrity="sha256-VVr5cSTVS7FFeYXdCBuPVhakgQOq/rMKyJ/eg11lqmw="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/blog/command-line-tools/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Streamlining Data Manipulation with the power of Command Line tools" />
+<meta property="og:description" content="Streamlining Data Manipulation with the power of Command Line tools
+Authors: Linsong, Shlok Nangia, Jialiang Guo (3_datamen)
+This blog is written and maintained by students in the Master of Science in Professional Computer Science Program at Simon Fraser University as part of their course credit. To learn more about this unique program, please visit sfu.ca/computing/mpcs.
+Do you know you can “clean and manipulate data” from a document without even opening the documents. Yes, you read that right! No need for any text editor." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/blog/command-line-tools/" />
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/10368/0*tvBePLQp96etoOyO" /><meta property="article:section" content="blog" />
+
+
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cdn-images-1.medium.com/max/10368/0*tvBePLQp96etoOyO" />
+<meta name="twitter:title" content="Streamlining Data Manipulation with the power of Command Line tools"/>
+<meta name="twitter:description" content="Streamlining Data Manipulation with the power of Command Line tools
+Authors: Linsong, Shlok Nangia, Jialiang Guo (3_datamen)
+This blog is written and maintained by students in the Master of Science in Professional Computer Science Program at Simon Fraser University as part of their course credit. To learn more about this unique program, please visit sfu.ca/computing/mpcs.
+Do you know you can “clean and manipulate data” from a document without even opening the documents. Yes, you read that right! No need for any text editor."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blogs",
+      "item": "http://localhost:1313/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Streamlining Data Manipulation with the power of Command Line tools",
+      "item": "http://localhost:1313/blog/command-line-tools/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Streamlining Data Manipulation with the power of Command Line tools",
+  "name": "Streamlining Data Manipulation with the power of Command Line tools",
+  "description": "Streamlining Data Manipulation with the power of Command Line tools Authors: Linsong, Shlok Nangia, Jialiang Guo (3_datamen)\nThis blog is written and maintained by students in the Master of Science in Professional Computer Science Program at Simon Fraser University as part of their course credit. To learn more about this unique program, please visit sfu.ca/computing/mpcs.\nDo you know you can “clean and manipulate data” from a document without even opening the documents. Yes, you read that right! No need for any text editor.\n",
+  "keywords": [
+    "Linux"
+  ],
+  "articleBody": "Streamlining Data Manipulation with the power of Command Line tools Authors: Linsong, Shlok Nangia, Jialiang Guo (3_datamen)\nThis blog is written and maintained by students in the Master of Science in Professional Computer Science Program at Simon Fraser University as part of their course credit. To learn more about this unique program, please visit sfu.ca/computing/mpcs.\nDo you know you can “clean and manipulate data” from a document without even opening the documents. Yes, you read that right! No need for any text editor.\nNot only that, most of the data cleaning and manipulations tasks can be performed by command line tools by writing just 1 line. Just think of the time you can save. No need to open the document in some text editor or excel and rely on the limited functionalities they give you.\nPhoto by Gabriel Heinzer on Unsplash\nSo, if you are also a geek like us who loves to work on terminal or would like to learn how to do all data cleaning, extraction, and aggregation operations in terminal(so that you can look like a hacker 😉), this article is for you.\nHere we are going to look at some powerful command line tools such as ‘sed’ and ‘awk’ which can simplify and speed up your data cleaning process. After reading this article you will be able to harness the power of these versatile tools to do efficient and effective data processing.\nIntroduction sed (Stream Editor): A streamline editor which performs operations on a stream of text without opening it in any text editor.\nawk(created by Aho, Weinberger \u0026 Kernighan): A data-driven programming language to process and analyze text.\ngrep(Global Regular Expression Print): A command line tool to quickly search(patterns and regular expressions) and filter text data from one or multiple files.\nCombination of above tools : Although each of the above tools are powerful enough but a combination of these can make many complex operations easy. For example:- When using extremely large datasets, firstly, sed can be used to search and replace some text and then, awk to extract some meaningful data and perform complex calculations, which will automate the time consuming complex tasks and make you more efficient.\nInstallation For Mac and Linux Users: If you are using “Mac OS” or a “Linux” distribution, you already have these amazing tools installed in your system. Open up the ‘terminal’ and try the following commands to invoke these tools.\n$ sed –help $ grep –help $ awk –help\nFor windows Users: You can install these tools from given links, but we recommend to use ‘Git Bash’ or ‘WSL(Windows Subsystem for Linux)’ , where you can find these tools preinstalled.\nsed for Windows grep for Windows Gawk for Windows Motivation Following are few more use cases where the combination of above tools can be used.\nData cleaning: Removing unwanted characters, formatting data, and fixing errors.\nData extraction: Selecting specific data based on certain conditions.\nData transformation: Converting data from one format to another.\nData aggregation: Calculating statistics and aggregating data.\nLet’s Dig Deeper 1. grep : global regular expression print This tool is the goto tool to perform quick search operations in the files while working on terminal or command line. It can also be used to search and filter data in multiple files with the use of regular expressions. Let’s look at some examples.\nExamples:\nFind all occurrences of the pattern ‘patricia’ in a file:\n$ grep 'patricia' myfile Same as above but looking only for complete words:\n$ grep -w 'patricia' myfile Find all occurrences of the pattern ‘.Pp’ at the beginning of a line:\n$ grep '^\\.Pp' myfile Find all lines in a file which do not contain the words ‘foo’ or ‘bar’:\n$ grep -v -e 'foo' -e 'bar' myfile 2. AWK As mentioned before, ‘awk’ is a data driven programming language which is mainly used for text processing, data extraction and reporting tool. It was created by Aho, Weinberger \u0026 Kernighan(hence the name AWK). This powerful tool allows us to parse the data from the files and perform various operations on them. It also allows to search for patterns and perform minor calculations on the data.\nExamples:\nPrint lines longer than 72 characters.\n$ length($0) \u003e 72 Print first two fields in opposite order.\n{ print $2, $1 } Same, with input fields separated by comma and/or spaces and tabs.\nBEGIN { FS = \",[ \\t]*|[ \\t]+\" } { print $2, $1 } { s += $1 } END { print \"sum is\", s, \" average is\", s/NR } Add up first column, print sum and average. /start/, /stop/ Print all lines between start/stop pairs.\nBEGIN { # Simulate echo(1) for (i = 1; i \u003c ARGC; i++) printf \"%s \", ARGV[i] printf \"\\n\" exit } 3. sed : stream editor As we mentioned before ‘sed’ is a stream editor i.e. a command line tool which is used for editing file. It can be used for multiple operations such as insert or delete lines , search or replace for specific words or text(regex) patterns. The power of this tool allows us to even edit multiple text files at the same time. Let’s see some examples to truly understand it.\nExamples:\nReplace ‘bar’ with ‘baz’ when piped from another command:\n$ echo \"An alternate word, like bar, is sometimes used in examples.\" | sed 's/bar/baz/' Using backlashes can sometimes be hard to read and follow:\n$ echo \"/home/example\" | sed 's/\\/home\\/example/\\/usr\\/local\\/example/' Using a different separator can be handy when working with paths:\n$ echo \"/home/example\" | sed 's#/home/example#/usr/local/example#' Replace all occurances of ‘foo’ with ‘bar’ in the file test.txt, without creating a backup of the file:\n$ sed -i '' -e 's/foo/bar/g' test.txt 4. The “|” (pipe) symbol The last tool which we will be covering today is “|” i.e. pipe symbol. A lot of people don’t know any use of this tool, but in linux, this symbol is used to link 2 commands or more specifically to direct the output of one command and serve it as a input to another command.\nFor example: using ls | grepgets the list of contents in the directory(i.e. output of ‘ls’) and sends it as a input to ‘grep’ command.\nNow let us get our hands dirty Imagine you are a data scientist working at a real-estate company. You download a property_tax_report from this webpage. The dataset contains information on properties from BC Assessment (BCA) and City sources in 2021.\nYou may think that for a newly built house, it tends to have a higher price than the ones built decades ago. So let us clean the data for this idea.\n1. First glance of the data $ head -2 property-tax-report-2.csv Here head -2 means to print first 2 lines from the data file. With this we could see how the header and the data looks like.\nSince the housing price varies a lot by locations, we will only consider the houses whose postcode starts with ‘V6A’. Furthermore, we remove the houses that were built before 1900.\n2. Locate the columns you what to use the filter $ head -2 property-tax-report-2.csv|awk -F';' '{print$(NF-4),$14}' Here the print(NF−4),14 means we only print the YEAR_BUILT and the PROPERTY_POSTAL_CODE columns.\n3. Check the top 10 of the buildings number by year $ cat property-tax-report-2.csv|awk -F';' '{print$(NF-4)}'|sort|uniq -c|sort -nr|head -10 Here sort|uniq -c|sort -nr part means we sort the build year and then uniq count the year, so we could have the number of the buildings that build from each year. Then we sort the numbers again to show the top 10.\n4. Make the filter $ head -10000 property-tax-report-2.csv|awk -F';' '{if (($14 ~ /^V6A/)\u0026\u0026($(NF-4)\u003e1900))print$14,$(NF-4)}'|head -5 Here $14 ~ /^V6A/ means column 14 start with V6A. You could also replace above with this:\n$ head -10000 property-tax-report-2.csv|grep 'V6A'|awk -F';' '{print$14,$(NF-4)}'|head -5 seems it works!\n5. Output the result to a file $ cat property-tax-report-2.csv|awk -F';' '{if (($14 ~ /^V6A/)\u0026\u0026($(NF-4)\u003e1900))print$0}'\u003eproperty-tax-report-filter.csv Just remember the header will be removed after this. To make it become a “real” comma-separated values file just add: sed “s/;/,/g”\n$ cat property-tax-report-2.csv|awk -F';' '{if (($14 ~ /^V6A/)\u0026\u0026($(NF-4)\u003e1900))print$0}'|sed \"s/;/,/g\"\u003eproperty-tax-report-filter.csv 6. Last move We create a new column and value it as (CURRENT_LAND_VALUE+ CURRENT_IMPROVEMENT_VALUE)/1000000 then we could study the whether YEAR_BUILT and HOUSE_PRICE are correlated.\n$ head -2 property-tax-report-filter.csv|awk -F';' '{print$(NF-4),($20+$21)/1000000}' Advantages Nowadays, there are so many tools that can help us with data preparation, such as Python, Perl, R, and some even with Graphic User Interface like Microsoft Excel, Jupyter Notebook, Tableau Prep, etc. You may have already mastered some of those modern technologies, so that you might ask:\n“Why should I learn some old-fashioned command line languages, given that learning something new can be such a painful process?”\nWell, it’s true that sed and awk are old — they’re already in their 40s — but that doesn’t mean they’re outdated. In some ways they still perform better than other tools:\n1. They are preinstalled in Unix and Unix-Like Systems Have you ever been in a situation where your lab has just bought a new workstation, or your company’s IT support team has just updated the workstation and reinstalled system, or you are simply using someone else’s device, and you need to process a batch of data before the environment and software being configured? It can be a dilemma when your task is urgent or you don’t want to waste time configuring or waiting for the IT Technician to configure the environment. But don’t worry, all the command line tools mentioned above are typically preinstalled on Unix-based systems, and you don’t need to install any extra packages like what you do for Python.\n2. They Are One-Liner-Friendly The syntax of sed and awk is designed to be concise, allowing people to accomplish a lot of actions with relatively few lines of code, or even possibly only one line of code if the programmer is familiar with their features. For the same task, sed/awk code is usually shorter than high-level programming language code. Here is an example of using awk to extract the first column of the input csv file and write it into the output file:\n$ awk -F, '{print $1}' input \u003e output And its equivalent Python implementation:\nwith open(\"input_path\", \"r\") as f_input, open(\"output_path\", \"w\") as f_output: for line in f_input: f_output.write(line.split(\",\")[0] + \"\\n\") The awk code here costs less effort to write and is more human-readible than the Python implementation. This is a simplest case and for more complex tasks the difference can be even larger.\n3. They Run Fast Sed and awk are not as extensible as modern languages like Python and Perl, and thus can be used for a narrower range of purposes than the latter; however, it is because of such a concentration that they can avoid any features irrelevant to text processing, keep lightweight, and get an well-optimized interpreter, so that for tasks within their capability they are normally faster than high-level programming languages, not to mention other GUI software.\nAnother reason why they’re fast is that sed uses a simple model of regular expression and awk compiles regular expression into state machine. The former makes it extremely fast for sed to process simple text processing tasks, while the latter helps awk with quickly determining if a line of text matches a complex pattern even for large amounts of text data.\n4. They Are Mouse-Free This one depends on personal habits. Some programmers like GUI and mouses because they make our life easier, while others prefer using keyboard only because mouse sometimes interrupt their flow of thoughts and short cuts is usually faster than mouse clicking.\nIf you are a keyboard lover, then sed and awk is perfect for you: it’s purely text- and keyboard-based with no need to move or click a mouse.\nFinal Note The real power of command line tools is still unexplored, we have just tried to scratch the surface. There are so many more tools out there which make our day to day work easy such as cut, sort, uniq, wc, tr, etc. But that might be the topic of our future posts.\nTill then , Keep Learning 😊\nReferences Bash Guide for Beginners\nAwk: The Power and Promise of a 40-Year-Old Language\nMan pages: sed\nPipeline_(Unix)\nCity of Vancouver — Open Data Portal\nWhat are the differences between Perl, Python, AWK and sed\nWhen To Use Sed Awk Over Perl Or Python\nRegular Expression Matching Can Be Simple And Fast, Russ Cox\n",
+  "wordCount" : "2075",
+  "inLanguage": "en",
+  "image":"https://cdn-images-1.medium.com/max/10368/0*tvBePLQp96etoOyO","datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/blog/command-line-tools/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Shlok Nangia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header sticky-header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Shlok Nangia (Alt + H)">Shlok Nangia</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/blog" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/experience" title="Experience">
+                    <span>Experience</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/blog/">Blogs</a></div>
+    <h1 class="post-title">
+      Streamlining Data Manipulation with the power of Command Line tools
+    </h1>
+    <div class="post-meta">
+
+
+Feb 2023
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://cdn-images-1.medium.com/max/10368/0*tvBePLQp96etoOyO" alt="">
+        
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">‎ Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#streamlining-data-manipulation-with-the-power-of-command-line-tools" aria-label="Streamlining Data Manipulation with the power of Command Line tools">Streamlining Data Manipulation with the power of Command Line tools</a><ul>
+                        
+                <li>
+                    <a href="#introduction" aria-label="Introduction"><strong>Introduction</strong></a></li>
+                <li>
+                    <a href="#installation" aria-label="Installation"><strong>Installation</strong></a></li>
+                <li>
+                    <a href="#motivation" aria-label="Motivation"><strong>Motivation</strong></a></li>
+                <li>
+                    <a href="#lets-dig-deeper" aria-label="Let’s Dig Deeper">Let’s Dig Deeper</a><ul>
+                        
+                <li>
+                    <a href="#1-grep--global-regular-expression-print" aria-label="1. grep : global regular expression print">1. grep : global regular expression print</a></li>
+                <li>
+                    <a href="#2-awk" aria-label="2. AWK">2. AWK</a></li>
+                <li>
+                    <a href="#3-sed--stream-editor" aria-label="3. sed : stream editor">3. sed : stream editor</a></li>
+                <li>
+                    <a href="#4-the--pipe-symbol" aria-label="4. The “|” (pipe) symbol">4. The “|” (pipe) symbol</a></li></ul>
+                </li>
+                <li>
+                    <a href="#now-let-us-get-our-hands-dirty" aria-label="Now let us get our hands dirty">Now let us get our hands dirty</a><ul>
+                        
+                <li>
+                    <a href="#1-first-glance-of-the-data" aria-label="1. First glance of the data">1. First glance of the data</a></li>
+                <li>
+                    <a href="#2-locate-the-columns-you-what-to-use-the-filter" aria-label="2. Locate the columns you what to use the filter">2. Locate the columns you what to use the filter</a></li>
+                <li>
+                    <a href="#3-check-the-top-10-of-the-buildings-number-by-year" aria-label="3. Check the top 10 of the buildings number by year">3. Check the top 10 of the buildings number by year</a></li>
+                <li>
+                    <a href="#4-make-the-filter" aria-label="4. Make the filter">4. Make the filter</a></li>
+                <li>
+                    <a href="#5-output-the-result-to-a-file" aria-label="5. Output the result to a file">5. Output the result to a file</a></li>
+                <li>
+                    <a href="#6-last-move" aria-label="6. Last move">6. Last move</a></li></ul>
+                </li>
+                <li>
+                    <a href="#advantages" aria-label="Advantages"><strong>Advantages</strong></a><ul>
+                        
+                <li>
+                    <a href="#1-they-are-preinstalled-in-unix-and-unix-like-systems" aria-label="1. They are preinstalled in Unix and Unix-Like Systems">1. They are preinstalled in Unix and Unix-Like Systems</a></li>
+                <li>
+                    <a href="#2-they-are-one-liner-friendly" aria-label="2. They Are One-Liner-Friendly">2. They Are One-Liner-Friendly</a></li>
+                <li>
+                    <a href="#3-they-run-fast" aria-label="3. They Run Fast">3. They Run Fast</a></li>
+                <li>
+                    <a href="#4-they-are-mouse-free" aria-label="4. They Are Mouse-Free">4. They Are Mouse-Free</a></li></ul>
+                </li>
+                <li>
+                    <a href="#final-note" aria-label="Final Note"><strong>Final Note</strong></a></li>
+                <li>
+                    <a href="#references" aria-label="References"><strong>References</strong></a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="streamlining-data-manipulation-with-the-power-of-command-line-tools">Streamlining Data Manipulation with the power of Command Line tools<a hidden class="anchor" aria-hidden="true" href="#streamlining-data-manipulation-with-the-power-of-command-line-tools">#</a></h1>
+<p>Authors: Linsong, Shlok Nangia, Jialiang Guo (3_datamen)</p>
+<p><em>This blog is written and maintained by students in the Master of Science in Professional Computer Science Program at Simon Fraser University as part of their course credit. To learn more about this unique program, please visit <a href="https://www.sfu.ca/computing/current-students/graduate-students/academic-programs/professional-master-of-science-in-computer-science.html">sfu.ca/computing/mpcs</a>.</em></p>
+<p>Do you know you can “clean and manipulate data” from a document without even opening the documents. Yes, you read that right! No need for any text editor.</p>
+<p><img loading="lazy" src="https://cdn-images-1.medium.com/max/2000/1*hY1-PQVEDDd4aFiAD2tmZA.gif" alt=""  />
+</p>
+<p>Not only that, most of the data cleaning and manipulations tasks can be performed by command line tools by writing just 1 line. Just think of the time you can save. No need to open the document in some text editor or excel and rely on the limited functionalities they give you.</p>
+<p><img loading="lazy" src="https://cdn-images-1.medium.com/max/10368/0*tvBePLQp96etoOyO" alt="Photo by Gabriel Heinzer on Unsplash"  />
+<em>Photo by <a href="https://unsplash.com/@6heinz3r?utm_source=medium&amp;utm_medium=referral">Gabriel Heinzer</a> on <a href="https://unsplash.com?utm_source=medium&amp;utm_medium=referral">Unsplash</a></em></p>
+<p>So, if you are also a geek like us who loves to work on terminal or would like to learn how to do all data cleaning, extraction, and aggregation operations in terminal(so that you can look like a hacker 😉), this article is for you.</p>
+<p>Here we are going to look at some powerful command line tools such as ‘<strong>sed</strong>’ and ‘<strong>awk</strong>’ which can simplify and speed up your data cleaning process. After reading this article you will be able to harness the power of these versatile tools to do efficient and effective data processing.</p>
+<h2 id="introduction"><strong>Introduction</strong><a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h2>
+<ul>
+<li>
+<p>sed (<em><strong>S</strong>tream <strong>Ed</strong>itor</em>): A streamline editor which performs operations on a stream of text without opening it in any text editor.</p>
+</li>
+<li>
+<p>awk(<em>created by <strong>A</strong>ho, <strong>W</strong>einberger &amp; <strong>K</strong>ernighan</em>): A data-driven programming language to process and analyze text.</p>
+</li>
+<li>
+<p>grep(<em><strong>G</strong>lobal <strong>R</strong>egular <strong>E</strong>xpression <strong>P</strong>rint</em>): A command line tool to quickly search(patterns and regular expressions) and filter text data from one or multiple files.</p>
+</li>
+<li>
+<p>Combination of above tools :
+Although each of the above tools are powerful enough but a combination of these can make many complex operations easy.
+For example:- When using extremely large datasets, firstly, sed can be used to search and replace some text and then, awk to extract some meaningful data and perform complex calculations, which will automate the time consuming complex tasks and make you more efficient.</p>
+</li>
+</ul>
+<h2 id="installation"><strong>Installation</strong><a hidden class="anchor" aria-hidden="true" href="#installation">#</a></h2>
+<ul>
+<li>
+<p>For Mac and Linux Users: If you are using “Mac OS” or a “Linux” distribution, you already have these amazing tools installed in your system. Open up the ‘terminal’ and try the following commands to invoke these tools.</p>
+<blockquote>
+<p>$ sed &ndash;help
+$ grep &ndash;help
+$ awk &ndash;help</p></blockquote>
+</li>
+<li>
+<p>For windows Users: You can install these tools from given links, but we recommend to use ‘<a href="https://git-scm.com/download/win">Git Bash</a>’ or ‘<a href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL(Windows Subsystem for Linux)</a>’ , where you can find these tools preinstalled.</p>
+</li>
+</ul>
+<ul>
+<li><a href="https://gnuwin32.sourceforge.net/packages/sed.htm">sed for Windows</a></li>
+<li><a href="https://gnuwin32.sourceforge.net/packages/grep.htm">grep for Windows</a></li>
+<li><a href="https://gnuwin32.sourceforge.net/packages/gawk.htm">Gawk for Windows</a></li>
+</ul>
+<h2 id="motivation"><strong>Motivation</strong><a hidden class="anchor" aria-hidden="true" href="#motivation">#</a></h2>
+<p>Following are few more use cases where the combination of above tools can be used.</p>
+<ul>
+<li>
+<p>Data cleaning: Removing unwanted characters, formatting data, and fixing errors.</p>
+</li>
+<li>
+<p>Data extraction: Selecting specific data based on certain conditions.</p>
+</li>
+<li>
+<p>Data transformation: Converting data from one format to another.</p>
+</li>
+<li>
+<p>Data aggregation: Calculating statistics and aggregating data.</p>
+</li>
+</ul>
+<h2 id="lets-dig-deeper">Let’s Dig Deeper<a hidden class="anchor" aria-hidden="true" href="#lets-dig-deeper">#</a></h2>
+<h3 id="1-grep--global-regular-expression-print">1. grep : global regular expression print<a hidden class="anchor" aria-hidden="true" href="#1-grep--global-regular-expression-print">#</a></h3>
+<p>This tool is the goto tool to perform quick search operations in the files while working on terminal or command line. It can also be used to search and filter data in multiple files with the use of regular expressions. Let’s look at some examples.</p>
+<p>Examples:</p>
+<p>Find all occurrences of the pattern ‘patricia’ in a file:</p>
+<pre><code>$ grep 'patricia' myfile
+</code></pre>
+<p>Same as above but looking only for complete words:</p>
+<pre><code>$ grep -w 'patricia' myfile
+</code></pre>
+<p>Find all occurrences of the pattern ‘.Pp’ at the beginning of a line:</p>
+<pre><code>$ grep '^\.Pp' myfile
+</code></pre>
+<p>Find all lines in a file which do not contain the words ‘foo’ or ‘bar’:</p>
+<pre><code>$ grep -v -e 'foo' -e 'bar' myfile
+</code></pre>
+<h3 id="2-awk">2. AWK<a hidden class="anchor" aria-hidden="true" href="#2-awk">#</a></h3>
+<p>As mentioned before, ‘awk’ is a data driven programming language which is mainly used for text processing, data extraction and reporting tool. It was created by Aho, Weinberger &amp; Kernighan(hence the name AWK). This powerful tool allows us to parse the data from the files and perform various operations on them. It also allows to search for patterns and perform minor calculations on the data.</p>
+<p>Examples:</p>
+<p>Print lines longer than 72 characters.</p>
+<pre><code>$ length($0) &gt; 72
+</code></pre>
+<p>Print first two fields in opposite order.</p>
+<pre><code>{ print $2, $1 }
+</code></pre>
+<p>Same, with input fields separated by comma and/or spaces and tabs.</p>
+<pre><code>BEGIN { FS = &quot;,[ \t]*|[ \t]+&quot; }
+         { print $2, $1 }
+         { s += $1 }
+   END  { print &quot;sum is&quot;, s, &quot; average is&quot;, s/NR }
+</code></pre>
+<p>Add up first column, print sum and average. /start/, /stop/ Print all lines between start/stop pairs.</p>
+<pre><code>BEGIN     {    # Simulate echo(1)
+        for (i = 1; i &lt; ARGC; i++) printf &quot;%s &quot;, ARGV[i]
+        printf &quot;\n&quot;
+        exit }
+</code></pre>
+<h3 id="3-sed--stream-editor">3. sed : stream editor<a hidden class="anchor" aria-hidden="true" href="#3-sed--stream-editor">#</a></h3>
+<p>As we mentioned before ‘sed’ is a stream editor i.e. a command line tool which is used for editing file. It can be used for multiple operations such as insert or delete lines , search or replace for specific words or text(regex) patterns. The power of this tool allows us to even edit multiple text files at the same time. Let’s see some examples to truly understand it.</p>
+<p>Examples:</p>
+<p>Replace ‘bar’ with ‘baz’ when piped from another command:</p>
+<pre><code>$ echo &quot;An alternate word, like bar, is sometimes used in examples.&quot; | sed 's/bar/baz/'
+</code></pre>
+<p>Using backlashes can sometimes be hard to read and follow:</p>
+<pre><code>$ echo &quot;/home/example&quot; | sed  's/\/home\/example/\/usr\/local\/example/'
+</code></pre>
+<p>Using a different separator can be handy when working with paths:</p>
+<pre><code>$ echo &quot;/home/example&quot; | sed 's#/home/example#/usr/local/example#'
+</code></pre>
+<p>Replace all occurances of ‘foo’ with ‘bar’ in the file test.txt, without creating a backup of the file:</p>
+<pre><code>$ sed -i '' -e 's/foo/bar/g' test.txt
+</code></pre>
+<h3 id="4-the--pipe-symbol">4. The “|” (pipe) symbol<a hidden class="anchor" aria-hidden="true" href="#4-the--pipe-symbol">#</a></h3>
+<p>The last tool which we will be covering today is “|” i.e. pipe symbol. A lot of people don’t know any use of this tool, but in linux, this symbol is used to link 2 commands or more specifically to direct the output of one command and serve it as a input to another command.</p>
+<p>For example: using ls | grepgets the list of contents in the directory(i.e. output of ‘ls’) and sends it as a input to ‘grep’ command.</p>
+<h2 id="now-let-us-get-our-hands-dirty">Now let us get our hands dirty<a hidden class="anchor" aria-hidden="true" href="#now-let-us-get-our-hands-dirty">#</a></h2>
+<p>Imagine you are a data scientist working at a real-estate company. You download a <a href="https://opendata.vancouver.ca/explore/dataset/property-tax-report/table/?refine.report_year=2021&amp;sort=-tax_assessment_year">property_tax_report</a> from this webpage. The dataset contains information on properties from BC Assessment (BCA) and City sources in 2021.</p>
+<p>You may think that for a newly built house, it tends to have a higher price than the ones built decades ago. So let us clean the data for this idea.</p>
+<h3 id="1-first-glance-of-the-data">1. First glance of the data<a hidden class="anchor" aria-hidden="true" href="#1-first-glance-of-the-data">#</a></h3>
+<pre><code>$ head -2 property-tax-report-2.csv
+</code></pre>
+<p>Here <strong>head -2</strong> means to print first 2 lines from the data file. With this we could see how the header and the data looks like.</p>
+<p><img loading="lazy" src="https://cdn-images-1.medium.com/max/4096/1*-g3Y073EvI9aoxsdWF4Wvg.png" alt=""  />
+</p>
+<p>Since the housing price varies a lot by locations, we will only consider the houses whose postcode starts with ‘V6A’. Furthermore, we remove the houses that were built before 1900.</p>
+<h3 id="2-locate-the-columns-you-what-to-use-the-filter">2. Locate the columns you what to use the filter<a hidden class="anchor" aria-hidden="true" href="#2-locate-the-columns-you-what-to-use-the-filter">#</a></h3>
+<pre><code>$ head -2 property-tax-report-2.csv|awk -F';' '{print$(NF-4),$14}'
+</code></pre>
+<p>Here the <strong>print</strong>(<em>NF</em>−4),<strong>14</strong> means we only print the YEAR_BUILT and the PROPERTY_POSTAL_CODE columns.</p>
+<p><img loading="lazy" src="https://cdn-images-1.medium.com/max/4096/1*A2F0IkJXuH3E7MGIAHit9g.png" alt=""  />
+</p>
+<h3 id="3-check-the-top-10-of-the-buildings-number-by-year">3. Check the top 10 of the buildings number by year<a hidden class="anchor" aria-hidden="true" href="#3-check-the-top-10-of-the-buildings-number-by-year">#</a></h3>
+<pre><code>$ cat property-tax-report-2.csv|awk -F';' '{print$(NF-4)}'|sort|uniq -c|sort -nr|head -10
+</code></pre>
+<p>Here <strong>sort|uniq -c|sort -nr</strong> part means we sort the build year and then uniq count the year, so we could have the number of the buildings that build from each year. Then we sort the numbers again to show the top 10.</p>
+<p><img loading="lazy" src="https://cdn-images-1.medium.com/max/3600/1*2mkHCvyc4Bbv4aSYCQ9Olg.png" alt=""  />
+</p>
+<h3 id="4-make-the-filter">4. Make the filter<a hidden class="anchor" aria-hidden="true" href="#4-make-the-filter">#</a></h3>
+<pre><code>$ head -10000 property-tax-report-2.csv|awk -F';' '{if (($14 ~ /^V6A/)&amp;&amp;($(NF-4)&gt;1900))print$14,$(NF-4)}'|head -5
+</code></pre>
+<p><img loading="lazy" src="https://cdn-images-1.medium.com/max/2824/1*tqshDLQKeYxYsmS2DdpeWQ.png" alt=""  />
+</p>
+<p>Here <strong>$14 ~ /^V6A/</strong> means column 14 start with V6A. You could also replace above with this:</p>
+<pre><code>$ head -10000 property-tax-report-2.csv|grep 'V6A'|awk -F';' '{print$14,$(NF-4)}'|head -5
+</code></pre>
+<p><img loading="lazy" src="https://cdn-images-1.medium.com/max/3600/1*WEO4YdKyWbfc3p2-edxSJA.png" alt=""  />
+</p>
+<p>seems it works!</p>
+<h3 id="5-output-the-result-to-a-file">5. Output the result to a file<a hidden class="anchor" aria-hidden="true" href="#5-output-the-result-to-a-file">#</a></h3>
+<pre><code>$ cat property-tax-report-2.csv|awk -F';' '{if (($14 ~ /^V6A/)&amp;&amp;($(NF-4)&gt;1900))print$0}'&gt;property-tax-report-filter.csv
+</code></pre>
+<p>Just remember the header will be removed after this. To make it become a “real” comma-separated values file just add: sed “s/;/,/g”</p>
+<pre><code>$ cat property-tax-report-2.csv|awk -F';' '{if (($14 ~ /^V6A/)&amp;&amp;($(NF-4)&gt;1900))print$0}'|sed &quot;s/;/,/g&quot;&gt;property-tax-report-filter.csv
+</code></pre>
+<h3 id="6-last-move">6. Last move<a hidden class="anchor" aria-hidden="true" href="#6-last-move">#</a></h3>
+<p>We create a new column and value it as (CURRENT_LAND_VALUE+ CURRENT_IMPROVEMENT_VALUE)/1000000 then we could study the whether YEAR_BUILT and HOUSE_PRICE are correlated.</p>
+<pre><code>$ head -2 property-tax-report-filter.csv|awk -F';' '{print$(NF-4),($20+$21)/1000000}'
+</code></pre>
+<p><img loading="lazy" src="https://cdn-images-1.medium.com/max/3468/1*uqK6ATVgEtQYj34EYTnvUg.png" alt=""  />
+</p>
+<h2 id="advantages"><strong>Advantages</strong><a hidden class="anchor" aria-hidden="true" href="#advantages">#</a></h2>
+<p>Nowadays, there are so many tools that can help us with data preparation, such as Python, Perl, R, and some even with Graphic User Interface like Microsoft Excel, Jupyter Notebook, Tableau Prep, etc. You may have already mastered some of those modern technologies, so that you might ask:</p>
+<blockquote>
+<p>“Why should I learn some old-fashioned command line languages, given that learning something new can be such a painful process?”</p></blockquote>
+<p><img loading="lazy" src="https://cdn-images-1.medium.com/max/2000/1*b-GLtsK60GbfMp5TCUAeDA.jpeg" alt=""  />
+</p>
+<p>Well, it’s true that sed and awk are old — they’re already in their 40s — but that doesn’t mean they’re outdated. In some ways they still perform better than other tools:</p>
+<h3 id="1-they-are-preinstalled-in-unix-and-unix-like-systems">1. They are preinstalled in Unix and Unix-Like Systems<a hidden class="anchor" aria-hidden="true" href="#1-they-are-preinstalled-in-unix-and-unix-like-systems">#</a></h3>
+<p>Have you ever been in a situation where your lab has just bought a new workstation, or your company’s IT support team has just updated the workstation and reinstalled system, or you are simply using someone else’s device, and you need to process a batch of data before the environment and software being configured? It can be a dilemma when your task is urgent or you don’t want to waste time configuring or waiting for the IT Technician to configure the environment. But don’t worry, all the command line tools mentioned above are typically preinstalled on Unix-based systems, and you don’t need to install any extra packages like what you do for Python.</p>
+<h3 id="2-they-are-one-liner-friendly">2. They Are One-Liner-Friendly<a hidden class="anchor" aria-hidden="true" href="#2-they-are-one-liner-friendly">#</a></h3>
+<p>The syntax of sed and awk is designed to be concise, allowing people to accomplish a lot of actions with relatively few lines of code, or even possibly only one line of code if the programmer is familiar with their features. For the same task, sed/awk code is usually shorter than high-level programming language code. Here is an example of using awk to extract the first column of the input csv file and write it into the output file:</p>
+<pre><code>$ awk -F, '{print $1}' input &gt; output
+</code></pre>
+<p>And its equivalent Python implementation:</p>
+<pre><code>with open(&quot;input_path&quot;, &quot;r&quot;) as f_input, open(&quot;output_path&quot;, &quot;w&quot;) as f_output:
+    for line in f_input:
+        f_output.write(line.split(&quot;,&quot;)[0] + &quot;\n&quot;)
+</code></pre>
+<p>The awk code here costs less effort to write and is more human-readible than the Python implementation. This is a simplest case and for more complex tasks the difference can be even larger.</p>
+<h3 id="3-they-run-fast">3. They Run Fast<a hidden class="anchor" aria-hidden="true" href="#3-they-run-fast">#</a></h3>
+<p><img loading="lazy" src="https://cdn-images-1.medium.com/max/2000/1*Y6g3yJCdauN3BRp6fYJjAA.jpeg" alt=""  />
+</p>
+<p>Sed and awk are not as extensible as modern languages like Python and Perl, and thus can be used for a narrower range of purposes than the latter; however, it is because of such a concentration that they can avoid any features irrelevant to text processing, keep lightweight, and get an well-optimized interpreter, so that for tasks within their capability they are normally faster than high-level programming languages, not to mention other GUI software.</p>
+<p>Another reason why they’re fast is that sed uses a simple model of regular expression and awk compiles regular expression into state machine. The former makes it extremely fast for sed to process simple text processing tasks, while the latter helps awk with quickly determining if a line of text matches a complex pattern even for large amounts of text data.</p>
+<h3 id="4-they-are-mouse-free">4. They Are Mouse-Free<a hidden class="anchor" aria-hidden="true" href="#4-they-are-mouse-free">#</a></h3>
+<p>This one depends on personal habits. Some programmers like GUI and mouses because they make our life easier, while others prefer using keyboard only because mouse sometimes interrupt their flow of thoughts and short cuts is usually faster than mouse clicking.</p>
+<p>If you are a keyboard lover, then sed and awk is perfect for you: it’s purely text- and keyboard-based with no need to move or click a mouse.</p>
+<h2 id="final-note"><strong>Final Note</strong><a hidden class="anchor" aria-hidden="true" href="#final-note">#</a></h2>
+<p>The real power of command line tools is still unexplored, we have just tried to scratch the surface. There are so many more tools out there which make our day to day work easy such as cut, sort, uniq, wc, tr, etc. But that might be the topic of our future posts.</p>
+<p>Till then , Keep Learning 😊</p>
+<h2 id="references"><strong>References</strong><a hidden class="anchor" aria-hidden="true" href="#references">#</a></h2>
+<p><a href="https://tldp.org/LDP/Bash-Beginners-Guide/html/">Bash Guide for Beginners</a></p>
+<p><a href="https://www.fosslife.org/awk-power-and-promise-40-year-old-language">Awk: The Power and Promise of a 40-Year-Old Language</a></p>
+<p><a href="https://www.gnu.org/software/sed/manual/sed.html">Man pages: sed</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Pipeline_(Unix)">Pipeline_(Unix</a>)</p>
+<p><a href="https://opendata.vancouver.ca/explore/dataset/property-tax-report/table/?refine.report_year=2021&amp;sort=-tax_assessment_year">City of Vancouver — Open Data Portal</a></p>
+<p><a href="https://stackoverflow.com/questions/366980/what-are-the-differences-between-perl-python-awk-and-sed">What are the differences between Perl, Python, AWK and sed</a></p>
+<p><a href="https://www.biostars.org/p/89661/">When To Use Sed Awk Over Perl Or Python</a></p>
+<p><a href="https://swtch.com/~rsc/regexp/regexp1.html">Regular Expression Matching Can Be Simple And Fast, Russ Cox</a></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/linux/">Linux</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2025 <a href="http://localhost:1313/">Shlok Nangia</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

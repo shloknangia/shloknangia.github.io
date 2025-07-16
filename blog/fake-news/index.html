@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>The Truth Behind Fake News: Tools and Techniques for Detection | Shlok Nangia</title>
+<meta name="keywords" content="ML, Big Data, AWS, Data Analysis">
+<meta name="description" content="The Truth Behind Fake News: Tools and Techniques for Detection
+Authors: Linsong, Shlok Nangia, Jialiang Guo (3_datamen)
+This blog is written and maintained by students in the Master of Science in Professional Computer Science Program at Simon Fraser University as part of their course credit. To learn more about this unique program, please visit sfu.ca/computing/mpcs.
+
+
+Motivation and Background:
+Recent years have witnessed fake news becoming a major problem, particularly on social media platforms like Twitter and Facebook. Our project aims to identify and classify these fake news and articles, to improve media literacy, protect public from the effects of fake news, and support easier fact-checking.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/blog/fake-news/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.c3ca23a48ce99a8d19e69d0d8634d0ace27503a74f8d89ecf07be73a0db7d1ec.css" integrity="sha256-w8ojpIzpmo0Z5p0NhjTQrOJ1A6dPjYns8HvnOg230ew=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.555af97124d54bb1457985dd081b8f5616a48103aafeb30ac89fde835d65aa6c.js" integrity="sha256-VVr5cSTVS7FFeYXdCBuPVhakgQOq/rMKyJ/eg11lqmw="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/blog/fake-news/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="The Truth Behind Fake News: Tools and Techniques for Detection" />
+<meta property="og:description" content="The Truth Behind Fake News: Tools and Techniques for Detection
+Authors: Linsong, Shlok Nangia, Jialiang Guo (3_datamen)
+This blog is written and maintained by students in the Master of Science in Professional Computer Science Program at Simon Fraser University as part of their course credit. To learn more about this unique program, please visit sfu.ca/computing/mpcs.
+
+
+Motivation and Background:
+Recent years have witnessed fake news becoming a major problem, particularly on social media platforms like Twitter and Facebook. Our project aims to identify and classify these fake news and articles, to improve media literacy, protect public from the effects of fake news, and support easier fact-checking." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/blog/fake-news/" />
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/2000/1*vNwJyRGHG-MyeYcCnuzXew.png" /><meta property="article:section" content="blog" />
+
+
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cdn-images-1.medium.com/max/2000/1*vNwJyRGHG-MyeYcCnuzXew.png" />
+<meta name="twitter:title" content="The Truth Behind Fake News: Tools and Techniques for Detection"/>
+<meta name="twitter:description" content="The Truth Behind Fake News: Tools and Techniques for Detection
+Authors: Linsong, Shlok Nangia, Jialiang Guo (3_datamen)
+This blog is written and maintained by students in the Master of Science in Professional Computer Science Program at Simon Fraser University as part of their course credit. To learn more about this unique program, please visit sfu.ca/computing/mpcs.
+
+
+Motivation and Background:
+Recent years have witnessed fake news becoming a major problem, particularly on social media platforms like Twitter and Facebook. Our project aims to identify and classify these fake news and articles, to improve media literacy, protect public from the effects of fake news, and support easier fact-checking."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blogs",
+      "item": "http://localhost:1313/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "The Truth Behind Fake News: Tools and Techniques for Detection",
+      "item": "http://localhost:1313/blog/fake-news/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "The Truth Behind Fake News: Tools and Techniques for Detection",
+  "name": "The Truth Behind Fake News: Tools and Techniques for Detection",
+  "description": "The Truth Behind Fake News: Tools and Techniques for Detection Authors: Linsong, Shlok Nangia, Jialiang Guo (3_datamen)\nThis blog is written and maintained by students in the Master of Science in Professional Computer Science Program at Simon Fraser University as part of their course credit. To learn more about this unique program, please visit sfu.ca/computing/mpcs.\nMotivation and Background: Recent years have witnessed fake news becoming a major problem, particularly on social media platforms like Twitter and Facebook. Our project aims to identify and classify these fake news and articles, to improve media literacy, protect public from the effects of fake news, and support easier fact-checking.\n",
+  "keywords": [
+    "ML", "Big Data", "AWS", "Data Analysis"
+  ],
+  "articleBody": "The Truth Behind Fake News: Tools and Techniques for Detection Authors: Linsong, Shlok Nangia, Jialiang Guo (3_datamen)\nThis blog is written and maintained by students in the Master of Science in Professional Computer Science Program at Simon Fraser University as part of their course credit. To learn more about this unique program, please visit sfu.ca/computing/mpcs.\nMotivation and Background: Recent years have witnessed fake news becoming a major problem, particularly on social media platforms like Twitter and Facebook. Our project aims to identify and classify these fake news and articles, to improve media literacy, protect public from the effects of fake news, and support easier fact-checking.\nProblem Statement: The challenge of fake news detection lies in distinguishing between genuine and false information, particularly as fake news becomes increasingly sophisticated and difficult to detect. Our project aims to answer the following questions:\nCan we accurately identify fake news using machine learning techniques?\nHow can we improve the accuracy and reliability of fake news detection?\nWhat features or characteristics of news articles are most indicative of fake news?\nOur Data Science Pipeline: Our data science pipeline involves several components, including data collection, preprocessing, feature extraction, model training, and evaluation. We collected a dataset of news articles from various sources, both genuine and fake, and preprocessed the data by removing irrelevant information and cleaning the text.\nData Collection: The initial stage of our data science pipeline involves gathering raw data from various sources. In this project, we have selected the PHEME, Liar, and Buzzfeed News datasets as the primary sources for fake news detection. These datasets provide diverse and rich information, making them suitable for our analysis. Additionally, we collect live data from Twitter using the Tweepy library as an up-to-date and dynamic source of information to enhance our model’s performance and adaptability.\nDownloading the datasets:\nPHEME: Access to the PHEME dataset can be requested through the PHEME project page. Once access is granted, download the dataset files.\nLiar: The Liar dataset can be downloaded from the University of Texas website. Download and unzip the dataset files.\nBuzzfeed News: The Buzzfeed News dataset is available on the BuzzFeed News GitHub repository.\n2. Data Preprocessing:\nIn this stage, the raw data is cleaned and preprocessed to make it suitable for analysis. This process involves several steps, including handling missing values, removing duplicates, correcting inconsistencies, and converting data types. Data preprocessing also includes feature engineering, which entails creating new features from existing ones to better represent the problem domain. We have performed the following preprocessing steps:\nLoad the BuzzFeed, Liar, and PHEME datasets from their respective files.\nFor each dataset, perform the following preprocessing steps:\nRemove any unnecessary columns and keep only the relevant ones (e.g., label and text). Convert the text to lowercase. Remove any non-alphabetic characters. For the BuzzFeed dataset, convert the “type” column to a binary label.\nFor the Liar dataset, convert the “label” column to a binary label.\nCombine the preprocessed datasets into a single DataFrame.\nSave the combined preprocessed data to a CSV file for further analysis and modeling.\nWe perform these preprocessing steps, ensuring that the resulting dataset is clean, consistent, and ready for analysis. By applying these data preprocessing techniques, you can ensure that the dataset is suitable for use in machine learning algorithms and other data analysis methods.\n3. Exploratory Data Analysis (EDA):\nEDA is the process of visually and analytically exploring the data to understand its structure, relationships, and patterns. This helps in generating hypotheses, identifying outliers, and determining the most relevant features for the analysis. In this case, we will analyze two datasets:\nthe combined dataset containing rumor and non-rumor threads for various events, and\nThe BuzzFeed dataset containing real and fake news. Common EDA techniques include descriptive statistics, histograms, box plots, and scatter plots.\nWe will perform the following tasks using the provided code as a reference for both datasets:\nCompare the number of different types of threads (rumor and non-rumor) and news (real and fake) for each event and source, respectively. Analyze the dynamics of information spread over time, such as retweets of source tweets in rumor and non-rumor threads.\nExamine the depth of reaction structures for both rumor and non-rumor threads and the relationship between news type and the presence of movies (video links) and images in the news articles.\nVisualize the network structures of rumor and non-rumor threads using graph representations and identify common sources that publish both real and fake news.\nHere, we’ll summarize the insights obtained from the Exploratory Data Analysis:\nThe comparison of rumor and non-rumor threads for each event and the comparison of real and fake news among various sources help us understand the distribution of rumors, non-rumors, real news, and fake news in different scenarios.\nAnalyzing the dynamics of information spread, such as the number of retweets of source tweets in rumor and non-rumor threads over time, helps us understand the impact of rumors on social media and the spread of real and fake news.\nExamining the depth of reaction structures for both rumor and non-rumor threads and the relationship between news type and the presence of movies (video links) and images in the news articles provide insights into the complexity of discussions and the prevalence of visual content in different types of threads and news articles. This can help us identify the level of engagement and how different types of threads and news articles evolve over time.\nVisualizing the network structures of rumor and non-rumor threads using graph representations and identifying common sources that publish both real and fake news allows us to explore the connectivity and interaction patterns among users participating in these threads and assess the credibility and reliability of various sources. This can help us identify influential nodes or clusters in the network that may contribute to the spread of information, rumors, or fake news.\nOverall, the Exploratory Data Analysis helps us to understand the structure and the relationships among the features in both datasets. This understanding can guide us in developing more accurate predictive models for detecting rumors and non-rumors in social media threads and real and fake news in the BuzzFeed dataset.\nTop 5 sources that publish Real news: Buzzfeed\nTop 5 sources that publish Fake news: Buzzfeed\nCommon source of real and fake news in Buzzfeed\nIn addition to analyzing the BuzzFeed dataset, we also explored the connections between speakers in the “liar” dataset based on their shared contexts. We created a directed graph using NetworkX, where nodes represent speakers and edges represent pairs of speakers who appear in the same context. This allowed us to compute various network statistics, such as the number of nodes, the number of edges, and the average degree. Moreover, we visualized the graph using two different layouts: the spring layout (force-directed) and the Circos plot. This analysis helped us understand the relationships between speakers and provided insights into the structure of their interactions. By examining the connections between speakers, we can potentially identify patterns or clusters that may contribute to the spread of misinformation.\n4. Model Monitoring and Maintenance: In this part, we integrated live Twitter data collection and used OpenAI to simulate labels generated by human annotators. To enhance the user experience, we can also incorporate user feedback based on the predicted scores from our model. Here’s a high-level overview of how to include user feedback in the pipeline:\nAfter deploying the model, users can interact with it by submitting text or links that they want to evaluate for credibility.\nThe model provides a credibility score or prediction for the submitted content.\nUsers can then provide feedback on the prediction, indicating whether they agree or disagree with the model’s evaluation.\nCollect user feedback and store it in a database, along with the original content and the model’s prediction.\nPeriodically update the training data with the new feedback and retrain the model to improve its performance. This step can be automated using techniques such as active learning or by manually incorporating the user feedback into the training data.\nBy incorporating user feedback into the model, we ensure that the model continuously adapts to the changing patterns of fake news and misinformation. This approach can lead to better overall performance and improved accuracy in detecting fake news.\nMethodology Data Splitting:\nTo prepare the data for model training and evaluation, we first integrated four datasets from different sources into a single dataset. The resultant dataset consists of 64296 pieces of text with their corresponding labels (True or Fake).\nTo ensure that the dataset was split in a way that could allow us to evaluate the models properly, we used the train_test_split function from the scikit-learn library to divide it into training set, validation set, and test set, in a ratio of 70:15:15.\nWe also set the random_state parameter to ensure that the split is reproducible, so that we can compare different models with each other later, and used the stratify parameter to ensure that each set contains the same proportion of samples of each class.\nModel Selection and Training:\nWe did transfer learning based on three popular natural language processing models on our dataset: BERT, GPT-2, and LSTM, and explored their performance. BERT and GPT-2 are transformer-based models, while LSTM is a recurrent neural network (RNN) model.\nBERT and GPT-2: To utilize the power of these pre-trained transformer models, we first used HuggingFace’s transformers library to tokenize our training data and encapsulate the tokenized data with corresponding labels into Dataloaders, for batch training.\nThen we load the pre-trained BERT/GPT-2 model, froze their parameters, and added a trainable binary classification head, which consists of two dense layers, a ReLu activation and a Dropout (to prevent overfitting) between them, and a LogSoftmax function at the end. We took the CLS token from the output of the last hidden layer of each transformer and used them as input to the classification head.\nFor the training stage, we adopted PyTorch Lightning Framework to conduct batch training for both models. During training, we logged the training and validation performance metrics including accuracy and loss, which can be visualized using TensorBoard.\n2. LSTM\nFor the LSTM model, we first defined a text transform pipeline to preprocess the text data before training. The pipeline consists of a SentencePieceTokenizer, a VocabTransform, truncation, and adding any extra tokens. Similar to previous section, the transformed data was encapsulated with corresponding labels into Dataloaders.\nAs LSTM is a type of neural network architecture other than transformer-based, it needs word embedding to get continuous, dense vector representations of words with it can work on. We applied pre-trained GloVe-6B word embeddings for this purpose. The neural network architecture consists of the word embedding, the LSTM model which takes the output of embedding as its input, and a dense layer to translate the output of LSTM model into logarithmic probability of two classes.\nAgain, We used PyTorch Lightning Framework to conduct batch training, and logged the training and validation performance of the LSTM model which can be visualized in TensorBoard.\nModel Explanation:\nSo, we built our fake news detector data product using BERT, GPT-2, and LSTM models. Our goal was to demonstrate the effectiveness of these models by employing a Global Surrogate approach: training a logistic regression model using the predicted labels from our models on the training dataset. We further enhanced the interpretability of these black-box models using LIME and SHAP techniques.\nWe used the dataset with pred_labels generated by BERT, GPT-2, and LSTM models to train and evaluate a logistic regression model for fake news detection. We then applied LIME and SHAP techniques to interpret the model. Here’s a brief explanation of each step:\nLogistic Regression Model:\nLoad the dataset and preprocess it to create binary labels.\nSplit the dataset into train and test sets, and vectorize the text using TfidfVectorizer.\nTrain a logistic regression model and evaluate its performance using the classification report.\nUse the logistic regression model as a surrogate model for the black-box models (BERT, GPT-2, and LSTM) to improve interpretability.\nInterpretability Techniques (LIME and SHAP):\nLIME:\nDefine a function to predict probabilities for the LIME explainer.\nCreate a LimeTextExplainer object and choose an instance from the test set to explain.\nUse the LIME explainer to generate an explanation for the chosen instance.\nVisualize the LIME explanation to understand the impact of each feature (word) on the prediction.\nSHAP:\nCreate a SHAP explainer using the logistic regression model and calculate SHAP values for the test set.\nVisualize the SHAP values using a beeswarm plot to understand the contribution of each feature (word) to the predictions.\nEvaluation Model Validation and Evaluation: The validation is conducted on the validation set during training, as stated above. We conducted experiment among different hyperparameters such as learning rate, dropout rate, layer dimension, optimizer, word embedding/transformer etc. By observing the validation performance, we selected the best performing models and their corresponding hyperparameter, and we were able to decide whether to stop early to prevent overfitting.\nOnce the model has been trained and validated, we can evaluate its performance by using it to make predictions on the test set, which contains unseen samples. We used scikit-learn’s classification_report method to generate metrics describing accuracy, precision, recall, and F1-score of each model.\nThe GPT-2-based model can generally achieve the best performance over all three models. LSTM-based model can also achieve relatively high accuracy, but its performance is not stable. In some training rounds it can only achieve a 55–60% accuracy, which may be due to weights initialization. BERT-based model is more stable than LSTM, but can only achieve a accuracy of ~85%. The confusion_matrix and ConfusionMatrixDisplay methods can also be used to visualize the performance of the model and identify areas where it may be making errors.\nFrom Left To Right: Confusion Matrix of BERT-Based, GPT-2 Based, LSTM-Based Model\nInterpretability Results: LIME and SHAP results provide insights into the most important features contributing to the predictions. LIME produces instance-by-instance explanations, which may seem random and harder to interpret. In contrast, SHAP offers a comprehensive evaluation, revealing features like “video” positively affect predictions, possibly suggesting that visual evidence makes news more reliable. Features like “http” and “says” negatively affect predictions, indicating online rumors and hearsay might be prevalent in these cases. Analyzing these explanations helps us better understand the factors considered by the models when detecting fake news.\nData Product Our data product is a tool that allows users to enter a news article details such as title, source URL, description and receive a prediction of whether it is genuine or fake. This tool can be integrated/added to different “News Sharing” platforms to validate the integrity of a specific article before the article is posted/shared on a platform.\nThe application uses our best-performing machine learning model(s) to make predictions based on the text content of the article and the output probabilities will then be adjusted according to the credibility of source of news. We demonstrated the functionality of the application by testing it on several news articles and comparing the predictions to known ground truth labels.\nThis Screenshot was taken in April 2023\nAnd using the “thumbs-up” and “thumbs-down” buttons, we have also provided options to give feedback to the models if its prediction is correct or not. Which then sends update to our model and this information will be used to re-train our model or extend its training on this live data.\nLessons Learnt Through this project, we learned the importance of carefully selecting and preprocessing data, as well as the benefits and limitations of various machine learning techniques for text classification tasks. We also gained experience in developing web applications and presenting our findings in a clear and concise manner.\nFuture Work As part of our future work, we plan to implement the following enhancements to improve the accuracy and reliability of our fake news detection system:\nFeedback Processing: Introduce a user identification system (user ID) to differentiate the credibility of feedback. This will help us better evaluate and weigh the input from users when refining the model, ensuring that the feedback provided is reliable and trustworthy.\nMaintain Information Sources and Weights: Develop a list of information sources and their respective weights to further enhance the accuracy of fake news detection. By assigning weights to the credibility and reliability of each information source, the model can better assess the likelihood of a news item being fake or genuine. Regularly updating this list will ensure that the model stays up-to-date with the evolving landscape of news sources.\nBy implementing these improvements, we aim to develop a more accurate and robust fake news detection system that can adapt to the changing nature of online information dissemination.\nSummary Our project ”The Truth Behind Fake News: Tools and Techniques for Detection” aimed to develop tools and techniques for identifying and detecting fake news articles. Through a data science pipeline involving data collection, preprocessing, feature extraction, model training, and evaluation, we were able to train machine learning models that accurately identified fake news with high accuracy.\nOur data product, a web application for predicting the authenticity of news articles, demonstrated the effectiveness of our models in a real-world application. Our findings contribute to ongoing efforts to combat the spread of fake news and improve the accuracy and reliability of information available to the public.\nFinal Note In the future, we plan to explore more advanced deep learning techniques to improve the performance of our fake news detection model. We also aim to integrate our tool with social media platforms to reach a larger audience and combat the spread of fake news. But that might be the topic of our future posts.\nTill then , Keep Learning 😊\n",
+  "wordCount" : "2939",
+  "inLanguage": "en",
+  "image":"https://cdn-images-1.medium.com/max/2000/1*vNwJyRGHG-MyeYcCnuzXew.png","datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/blog/fake-news/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Shlok Nangia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header sticky-header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Shlok Nangia (Alt + H)">Shlok Nangia</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/blog" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/experience" title="Experience">
+                    <span>Experience</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/blog/">Blogs</a></div>
+    <h1 class="post-title">
+      The Truth Behind Fake News: Tools and Techniques for Detection
+    </h1>
+    <div class="post-meta">
+
+
+Apr 2023
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://cdn-images-1.medium.com/max/2000/1*vNwJyRGHG-MyeYcCnuzXew.png" alt="">
+        
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">‎ Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#the-truth-behind-fake-news-tools-and-techniques-for-detection" aria-label="The Truth Behind Fake News: Tools and Techniques for Detection">The Truth Behind Fake News: Tools and Techniques for Detection</a><ul>
+                        
+                <li>
+                    <a href="#motivation-and-background" aria-label="Motivation and Background:">Motivation and Background:</a></li>
+                <li>
+                    <a href="#problem-statement" aria-label="Problem Statement:">Problem Statement:</a></li>
+                <li>
+                    <a href="#our-data-science-pipeline" aria-label="Our Data Science Pipeline:">Our Data Science Pipeline:</a></li>
+                <li>
+                    <a href="#methodology" aria-label="Methodology"><strong>Methodology</strong></a></li>
+                <li>
+                    <a href="#evaluation" aria-label="Evaluation">Evaluation</a></li>
+                <li>
+                    <a href="#data-product" aria-label="Data Product"><strong>Data Product</strong></a></li>
+                <li>
+                    <a href="#lessons-learnt" aria-label="Lessons Learnt">Lessons Learnt</a></li>
+                <li>
+                    <a href="#future-work" aria-label="Future Work">Future Work</a></li>
+                <li>
+                    <a href="#summary" aria-label="Summary">Summary</a></li>
+                <li>
+                    <a href="#final-note" aria-label="Final Note">Final Note</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="the-truth-behind-fake-news-tools-and-techniques-for-detection">The Truth Behind Fake News: Tools and Techniques for Detection<a hidden class="anchor" aria-hidden="true" href="#the-truth-behind-fake-news-tools-and-techniques-for-detection">#</a></h1>
+<p>Authors: Linsong, Shlok Nangia, Jialiang Guo (3_datamen)</p>
+<p><em>This blog is written and maintained by students in the Master of Science in Professional Computer Science Program at Simon Fraser University as part of their course credit. To learn more about this unique program, please visit <a href="https://www.sfu.ca/computing/current-students/graduate-students/academic-programs/professional-master-of-science-in-computer-science.html">sfu.ca/computing/mpcs</a>.</em></p>
+<p><img loading="lazy" src="https://cdn-images-1.medium.com/max/2000/1*vNwJyRGHG-MyeYcCnuzXew.png" alt=""  />
+</p>
+<h2 id="motivation-and-background">Motivation and Background:<a hidden class="anchor" aria-hidden="true" href="#motivation-and-background">#</a></h2>
+<p>Recent years have witnessed fake news becoming a major problem, particularly on social media platforms like Twitter and Facebook. Our project aims to identify and classify these fake news and articles, to improve media literacy, protect public from the effects of fake news, and support easier fact-checking.</p>
+<h2 id="problem-statement">Problem Statement:<a hidden class="anchor" aria-hidden="true" href="#problem-statement">#</a></h2>
+<p>The challenge of fake news detection lies in distinguishing between genuine and false information, particularly as fake news becomes increasingly sophisticated and difficult to detect. Our project aims to answer the following questions:</p>
+<ul>
+<li>
+<p>Can we accurately identify fake news using machine learning techniques?</p>
+</li>
+<li>
+<p>How can we improve the accuracy and reliability of fake news detection?</p>
+</li>
+<li>
+<p>What features or characteristics of news articles are most indicative of fake news?</p>
+</li>
+</ul>
+<h2 id="our-data-science-pipeline">Our Data Science Pipeline:<a hidden class="anchor" aria-hidden="true" href="#our-data-science-pipeline">#</a></h2>
+<p>Our data science pipeline involves several components, including data collection, preprocessing, feature extraction, model training, and evaluation. We collected a dataset of news articles from various sources, both genuine and fake, and preprocessed the data by removing irrelevant information and cleaning the text.</p>
+<ol>
+<li><strong>Data Collection:</strong></li>
+</ol>
+<p>The initial stage of our data science pipeline involves gathering raw data from various sources. In this project, we have selected the <strong>PHEME, Liar, and Buzzfeed News</strong> datasets as the primary sources for fake news detection. These datasets provide diverse and rich information, making them suitable for our analysis. Additionally, we collect live data from Twitter using the <strong>Tweepy library</strong> as an up-to-date and dynamic source of information to enhance our model’s performance and adaptability.</p>
+<p>Downloading the datasets:</p>
+<p><strong>PHEME:</strong> Access to the PHEME dataset can be requested through the <a href="https://figshare.com/articles/dataset/PHEME_dataset_for_Rumour_Detection_and_Veracity_Classification/6392078">PHEME</a> project page. Once access is granted, download the dataset files.</p>
+<p><strong>Liar:</strong> The <a href="https://sites.cs.ucsb.edu/~william/data/liar_dataset.zip">Liar dataset </a>can be downloaded from the University of Texas website. Download and unzip the dataset files.</p>
+<p><strong>Buzzfeed News:</strong> The Buzzfeed News dataset is available on the <a href="https://github.com/BuzzFeedNews/2018-12-fake-news-top-50">BuzzFeed News GitHub repository</a>.</p>
+<p><strong>2. Data Preprocessing:</strong></p>
+<p>In this stage, the raw data is cleaned and preprocessed to make it suitable for analysis. This process involves several steps, including handling missing values, removing duplicates, correcting inconsistencies, and converting data types. Data preprocessing also includes feature engineering, which entails creating new features from existing ones to better represent the problem domain. We have performed the following preprocessing steps:</p>
+<ul>
+<li>
+<p>Load the BuzzFeed, Liar, and PHEME datasets from their respective files.</p>
+</li>
+<li>
+<p>For each dataset, perform the following preprocessing steps:</p>
+</li>
+</ul>
+<ul>
+<li>Remove any unnecessary columns and keep only the relevant ones (e.g., label and text).</li>
+<li>Convert the text to lowercase.</li>
+<li>Remove any non-alphabetic characters.</li>
+</ul>
+<ul>
+<li>
+<p>For the BuzzFeed dataset, convert the “type” column to a binary label.</p>
+</li>
+<li>
+<p>For the Liar dataset, convert the “label” column to a binary label.</p>
+</li>
+<li>
+<p>Combine the preprocessed datasets into a single DataFrame.</p>
+</li>
+<li>
+<p>Save the combined preprocessed data to a CSV file for further analysis and modeling.</p>
+</li>
+</ul>
+<p>We perform these preprocessing steps, ensuring that the resulting dataset is clean, consistent, and ready for analysis. By applying these data preprocessing techniques, you can ensure that the dataset is suitable for use in machine learning algorithms and other data analysis methods.</p>
+<p><strong>3. Exploratory Data Analysis (EDA):</strong></p>
+<p>EDA is the process of visually and analytically exploring the data to understand its structure, relationships, and patterns. This helps in generating hypotheses, identifying outliers, and determining the most relevant features for the analysis. In this case, we will analyze two datasets:</p>
+<ol>
+<li>
+<p>the combined dataset containing rumor and non-rumor threads for various events, and</p>
+</li>
+<li>
+<p>The BuzzFeed dataset containing real and fake news. Common EDA techniques include descriptive statistics, histograms, box plots, and scatter plots.</p>
+</li>
+</ol>
+<p>We will perform the following tasks using the provided code as a reference for both datasets:</p>
+<ul>
+<li>
+<p><strong>Compare</strong> the number of different types of threads (rumor and non-rumor) and news (real and fake) for each event and source, respectively.
+Analyze the dynamics of information spread over time, such as retweets of source tweets in rumor and non-rumor threads.</p>
+</li>
+<li>
+<p><strong>Examine</strong> the depth of reaction structures for both rumor and non-rumor threads and the relationship between news type and the presence of movies (video links) and images in the news articles.</p>
+</li>
+<li>
+<p><strong>Visualize</strong> the network structures of rumor and non-rumor threads using graph representations and identify common sources that publish both real and fake news.</p>
+</li>
+</ul>
+<p>Here, we’ll summarize the insights obtained from the Exploratory Data Analysis:</p>
+<ul>
+<li>
+<p>The comparison of rumor and non-rumor threads for each event and the comparison of real and fake news among various sources help us understand the distribution of rumors, non-rumors, real news, and fake news in different scenarios.</p>
+</li>
+<li>
+<p>Analyzing the dynamics of information spread, such as the number of retweets of source tweets in rumor and non-rumor threads over time, helps us understand the impact of rumors on social media and the spread of real and fake news.</p>
+</li>
+<li>
+<p>Examining the depth of reaction structures for both rumor and non-rumor threads and the relationship between news type and the presence of movies (video links) and images in the news articles provide insights into the complexity of discussions and the prevalence of visual content in different types of threads and news articles. This can help us identify the level of engagement and how different types of threads and news articles evolve over time.</p>
+</li>
+<li>
+<p>Visualizing the network structures of rumor and non-rumor threads using graph representations and identifying common sources that publish both real and fake news allows us to explore the connectivity and interaction patterns among users participating in these threads and assess the credibility and reliability of various sources. This can help us identify influential nodes or clusters in the network that may contribute to the spread of information, rumors, or fake news.</p>
+</li>
+<li>
+<p>Overall, the Exploratory Data Analysis helps us to understand the structure and the relationships among the features in both datasets. This understanding can guide us in developing more accurate predictive models for detecting rumors and non-rumors in social media threads and real and fake news in the BuzzFeed dataset.</p>
+</li>
+</ul>
+<p><img loading="lazy" src="https://cdn-images-1.medium.com/max/3240/1*nhiC3B7qmZhDx7QyTcoZUw.png" alt="Top 5 sources that publish Real news: Buzzfeed"  />
+<em><strong>Top 5 sources that publish Real news: Buzzfeed</strong></em></p>
+<p><img loading="lazy" src="https://cdn-images-1.medium.com/max/3240/1*Kxn6siCqcEIxvAxgkLSM-g.png" alt="Top 5 sources that publish Fake news: Buzzfeed"  />
+<em><strong>Top 5 sources that publish Fake news: Buzzfeed</strong></em></p>
+<p><img loading="lazy" src="https://cdn-images-1.medium.com/max/2000/1*VpWR4HZaIwC1vtmcTAzDmw.png" alt="Common source of real and fake news in Buzzfeed"  />
+<em><strong>Common source of real and fake news in Buzzfeed</strong></em></p>
+<p>In addition to analyzing the BuzzFeed dataset, we also explored the connections between speakers in the “liar” dataset based on their shared contexts. We created a directed graph using NetworkX, where nodes represent speakers and edges represent pairs of speakers who appear in the same context. This allowed us to compute various network statistics, such as the number of nodes, the number of edges, and the average degree. Moreover, we visualized the graph using two different layouts: the spring layout (force-directed) and the Circos plot. This analysis helped us understand the relationships between speakers and provided insights into the structure of their interactions. By examining the connections between speakers, we can potentially identify patterns or clusters that may contribute to the spread of misinformation.</p>
+<p><strong>4. Model Monitoring and Maintenance:</strong>
+In this part, we integrated live Twitter data collection and used OpenAI to simulate labels generated by human annotators. To enhance the user experience, we can also incorporate user feedback based on the predicted scores from our model.
+Here’s a high-level overview of how to include user feedback in the pipeline:</p>
+<ul>
+<li>
+<p>After deploying the model, users can interact with it by submitting text or links that they want to evaluate for credibility.</p>
+</li>
+<li>
+<p>The model provides a credibility score or prediction for the submitted content.</p>
+</li>
+<li>
+<p>Users can then provide feedback on the prediction, indicating whether they agree or disagree with the model’s evaluation.</p>
+</li>
+<li>
+<p>Collect user feedback and store it in a database, along with the original content and the model’s prediction.</p>
+</li>
+<li>
+<p>Periodically update the training data with the new feedback and retrain the model to improve its performance. This step can be automated using techniques such as active learning or by manually incorporating the user feedback into the training data.</p>
+</li>
+</ul>
+<p>By incorporating user feedback into the model, we ensure that the model continuously adapts to the changing patterns of fake news and misinformation. This approach can lead to better overall performance and improved accuracy in detecting fake news.</p>
+<h2 id="methodology"><strong>Methodology</strong><a hidden class="anchor" aria-hidden="true" href="#methodology">#</a></h2>
+<p><strong>Data Splitting:</strong></p>
+<p>To prepare the data for model training and evaluation, we first integrated four datasets from different sources into a single dataset. The resultant dataset consists of 64296 pieces of text with their corresponding labels (True or Fake).</p>
+<p>To ensure that the dataset was split in a way that could allow us to evaluate the models properly, we used the train_test_split function from the scikit-learn library to divide it into training set, validation set, and test set, in a ratio of 70:15:15.</p>
+<p>We also set the random_state parameter to ensure that the split is reproducible, so that we can compare different models with each other later, and used the stratify parameter to ensure that each set contains the same proportion of samples of each class.</p>
+<p><strong>Model Selection and Training:</strong></p>
+<p>We did transfer learning based on three popular natural language processing models on our dataset: BERT, GPT-2, and LSTM, and explored their performance. BERT and GPT-2 are transformer-based models, while LSTM is a recurrent neural network (RNN) model.</p>
+<ol>
+<li><strong>BERT and GPT-2:</strong></li>
+</ol>
+<p>To utilize the power of these pre-trained transformer models, we first used HuggingFace’s transformers library to tokenize our training data and encapsulate the tokenized data with corresponding labels into Dataloaders, for batch training.</p>
+<p>Then we load the pre-trained BERT/GPT-2 model, froze their parameters, and added a trainable binary classification head, which consists of two dense layers, a ReLu activation and a Dropout (to prevent overfitting) between them, and a LogSoftmax function at the end. We took the CLS token from the output of the last hidden layer of each transformer and used them as input to the classification head.</p>
+<p><img loading="lazy" src="https://cdn-images-1.medium.com/max/2000/1*WNmgYfW9AyTltXUodqm5xQ.png" alt=""  />
+</p>
+<p>For the training stage, we adopted PyTorch Lightning Framework to conduct batch training for both models. During training, we logged the training and validation performance metrics including accuracy and loss, which can be visualized using TensorBoard.</p>
+<p><strong>2. LSTM</strong></p>
+<p>For the LSTM model, we first defined a text transform pipeline to preprocess the text data before training. The pipeline consists of a SentencePieceTokenizer, a VocabTransform, truncation, and adding any extra tokens. Similar to previous section, the transformed data was encapsulated with corresponding labels into Dataloaders.</p>
+<p>As LSTM is a type of neural network architecture other than transformer-based, it needs word embedding to get continuous, dense vector representations of words with it can work on. We applied pre-trained GloVe-6B word embeddings for this purpose. The neural network architecture consists of the word embedding, the LSTM model which takes the output of embedding as its input, and a dense layer to translate the output of LSTM model into logarithmic probability of two classes.</p>
+<p><img loading="lazy" src="https://cdn-images-1.medium.com/max/2000/1*kEcX5JRTxRaG5-W9tq2nMw.png" alt=""  />
+</p>
+<p>Again, We used PyTorch Lightning Framework to conduct batch training, and logged the training and validation performance of the LSTM model which can be visualized in TensorBoard.</p>
+<p><strong>Model Explanation:</strong></p>
+<p>So, we built our fake news detector data product using BERT, GPT-2, and
+LSTM models. Our goal was to demonstrate the effectiveness of these models by employing a Global Surrogate approach: training a logistic regression model using the predicted labels from our models on the training dataset. We further enhanced the interpretability of these black-box models using LIME and SHAP techniques.</p>
+<p>We used the dataset with pred_labels generated by BERT, GPT-2, and LSTM models to train and evaluate a logistic regression model for fake news detection. We then applied LIME and SHAP techniques to interpret the model. Here’s a brief explanation of each step:</p>
+<p><strong>Logistic Regression Model:</strong></p>
+<ul>
+<li>
+<p>Load the dataset and preprocess it to create binary labels.</p>
+</li>
+<li>
+<p>Split the dataset into train and test sets, and vectorize the text using TfidfVectorizer.</p>
+</li>
+<li>
+<p>Train a logistic regression model and evaluate its performance using the classification report.</p>
+</li>
+<li>
+<p>Use the logistic regression model as a surrogate model for the black-box models (BERT, GPT-2, and LSTM) to improve interpretability.</p>
+</li>
+</ul>
+<p><strong>Interpretability Techniques (LIME and SHAP):</strong></p>
+<p><strong>LIME:</strong></p>
+<ul>
+<li>
+<p>Define a function to predict probabilities for the LIME explainer.</p>
+</li>
+<li>
+<p>Create a LimeTextExplainer object and choose an instance from the test set to explain.</p>
+</li>
+<li>
+<p>Use the LIME explainer to generate an explanation for the chosen instance.</p>
+</li>
+<li>
+<p>Visualize the LIME explanation to understand the impact of each feature (word) on the prediction.</p>
+</li>
+</ul>
+<p><strong>SHAP:</strong></p>
+<ul>
+<li>
+<p>Create a SHAP explainer using the logistic regression model and calculate SHAP values for the test set.</p>
+</li>
+<li>
+<p>Visualize the SHAP values using a beeswarm plot to understand the contribution of each feature (word) to the predictions.</p>
+</li>
+</ul>
+<h2 id="evaluation">Evaluation<a hidden class="anchor" aria-hidden="true" href="#evaluation">#</a></h2>
+<p><strong>Model Validation and Evaluation:</strong> The validation is conducted on the validation set during training, as stated above. We conducted experiment among different hyperparameters such as learning rate, dropout rate, layer dimension, optimizer, word embedding/transformer etc. By observing the validation performance, we selected the best performing models and their corresponding hyperparameter, and we were able to decide whether to stop early to prevent overfitting.</p>
+<p>Once the model has been trained and validated, we can evaluate its performance by using it to make predictions on the test set, which contains unseen samples. We used scikit-learn’s classification_report method to generate metrics describing accuracy, precision, recall, and F1-score of each model.</p>
+<p><img loading="lazy" src="https://cdn-images-1.medium.com/max/2000/1*Y54O4k0Am0m91xFn9mJMCQ.png" alt=""  />
+</p>
+<p>The GPT-2-based model can generally achieve the best performance over all three models. LSTM-based model can also achieve relatively high accuracy, but its performance is not stable. In some training rounds it can only achieve a 55–60% accuracy, which may be due to weights initialization. BERT-based model is more stable than LSTM, but can only achieve a accuracy of ~85%. The confusion_matrix and ConfusionMatrixDisplay methods can also be used to visualize the performance of the model and identify areas where it may be making errors.</p>
+<p><img loading="lazy" src="https://cdn-images-1.medium.com/max/2246/1*71_AqbKbSOk0u0VwMQrQ-A.png" alt="From Left To Right: Confusion Matrix of BERT-Based, GPT-2 Based, LSTM-Based Model"  />
+<em>From Left To Right: Confusion Matrix of BERT-Based, GPT-2 Based, LSTM-Based Model</em></p>
+<p><strong>Interpretability Results:</strong> LIME and SHAP results provide insights into the most important features contributing to the predictions. LIME produces instance-by-instance explanations, which may seem random and harder to interpret. In contrast, SHAP offers a comprehensive evaluation, revealing features like “video” positively affect predictions, possibly suggesting that
+visual evidence makes news more reliable. Features like “http” and “says” negatively affect predictions, indicating online rumors and hearsay might be prevalent in these cases. Analyzing these explanations helps us better understand the factors considered by the models when detecting fake news.</p>
+<p><img loading="lazy" src="https://cdn-images-1.medium.com/max/2000/1*r8McZdGypK68fXYP_EIY-w.png" alt=""  />
+</p>
+<p><img loading="lazy" src="https://cdn-images-1.medium.com/max/2172/1*8qIYrR4thVMf2OKGh6WMTA.png" alt=""  />
+</p>
+<h2 id="data-product"><strong>Data Product</strong><a hidden class="anchor" aria-hidden="true" href="#data-product">#</a></h2>
+<p>Our data product is a tool that allows users to enter a news article details such as title, source URL, description and receive a prediction of whether it is genuine or fake. This tool can be integrated/added to different “News Sharing” platforms to validate the integrity of a specific article before the article is posted/shared on a platform.</p>
+<p>The application uses our best-performing machine learning model(s) to make predictions based on the text content of the article and the output probabilities will then be adjusted according to the credibility of source of news. We demonstrated the functionality of the application by testing it on several news articles and comparing the predictions to known ground truth labels.</p>
+<p><img loading="lazy" src="https://cdn-images-1.medium.com/max/2188/1*GglInec0o43x4OiAJIFb1w.png" alt="This Screenshot was taken in April 2023"  />
+<em>This Screenshot was taken in April 2023</em></p>
+<p>And using the “thumbs-up” and “thumbs-down” buttons, we have also provided options to give feedback to the models if its prediction is correct or not. Which then sends update to our model and this information will be used to re-train our model or extend its training on this live data.</p>
+<h2 id="lessons-learnt">Lessons Learnt<a hidden class="anchor" aria-hidden="true" href="#lessons-learnt">#</a></h2>
+<p>Through this project, we learned the importance of carefully selecting and preprocessing data, as well as the benefits and limitations of various machine learning techniques for text classification tasks. We also gained experience in developing web applications and presenting our findings in a clear and concise manner.</p>
+<h2 id="future-work">Future Work<a hidden class="anchor" aria-hidden="true" href="#future-work">#</a></h2>
+<p>As part of our future work, we plan to implement the following enhancements to improve the accuracy and reliability of our fake news detection system:</p>
+<ul>
+<li>
+<p><strong>Feedback Processing:</strong> Introduce a user identification system (user ID) to differentiate the credibility of feedback. This will help us better evaluate and weigh the input from users when refining the model, ensuring that the feedback provided is reliable and trustworthy.</p>
+</li>
+<li>
+<p><strong>Maintain Information Sources and Weights:</strong> Develop a list of information sources and their respective weights to further enhance the accuracy of fake news detection. By assigning weights to the credibility and reliability of each information source, the model can better assess the likelihood of a news item being fake or genuine. Regularly updating this list will ensure that the model stays up-to-date with the evolving landscape of news sources.</p>
+</li>
+</ul>
+<p>By implementing these improvements, we aim to develop a more accurate and robust fake news detection system that can adapt to the changing nature of online information dissemination.</p>
+<h2 id="summary">Summary<a hidden class="anchor" aria-hidden="true" href="#summary">#</a></h2>
+<p>Our project <strong>”The Truth Behind Fake News: Tools and Techniques for Detection”</strong> aimed to develop tools and techniques for identifying and detecting fake news articles. Through a data science pipeline involving data collection, preprocessing, feature extraction, model training, and evaluation, we were able to train machine learning models that accurately identified fake news with high accuracy.</p>
+<p>Our data product, a web application for predicting the authenticity of news articles, demonstrated the effectiveness of our models in a real-world application. Our findings contribute to ongoing efforts to combat the spread of fake news and improve the accuracy and reliability of information available to the public.</p>
+<h2 id="final-note">Final Note<a hidden class="anchor" aria-hidden="true" href="#final-note">#</a></h2>
+<p>In the future, we plan to explore more advanced deep learning techniques to improve the performance of our fake news detection model. We also aim to integrate our tool with social media platforms to reach a larger audience and combat the spread of fake news. But that might be the topic of our future posts.</p>
+<p>Till then , Keep Learning 😊</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/ml/">ML</a></li>
+      <li><a href="http://localhost:1313/tags/big-data/">Big Data</a></li>
+      <li><a href="http://localhost:1313/tags/aws/">AWS</a></li>
+      <li><a href="http://localhost:1313/tags/data-analysis/">Data Analysis</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2025 <a href="http://localhost:1313/">Shlok Nangia</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

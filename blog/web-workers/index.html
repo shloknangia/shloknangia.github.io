@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Unleashing Web Workers in Angular: A Developer’s Guide | Shlok Nangia</title>
+<meta name="keywords" content="Angular, Typescript, Multithreading">
+<meta name="description" content="Unleashing Web Workers in Angular: A Developer’s Guide
+Angular is powerful. But even power needs a sidekick. Enter Web Workers — your app’s behind-the-scenes performance booster.
+What is Web Worker ?
+We know that Javascript is a single threaded language, therefore, multiple scripts cannot be executed at the same time as it has been designed to work in a single threaded environment.
+Consider a scenario in which you need to perform numerous tasks, such as pre-processing a huge quantity of API data, Unit conversion, and so on now during these computations, CPU usage will be high and Javascript will cause your web page to hang.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/blog/web-workers/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.c3ca23a48ce99a8d19e69d0d8634d0ace27503a74f8d89ecf07be73a0db7d1ec.css" integrity="sha256-w8ojpIzpmo0Z5p0NhjTQrOJ1A6dPjYns8HvnOg230ew=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.555af97124d54bb1457985dd081b8f5616a48103aafeb30ac89fde835d65aa6c.js" integrity="sha256-VVr5cSTVS7FFeYXdCBuPVhakgQOq/rMKyJ/eg11lqmw="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/blog/web-workers/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Unleashing Web Workers in Angular: A Developer’s Guide" />
+<meta property="og:description" content="Unleashing Web Workers in Angular: A Developer’s Guide
+Angular is powerful. But even power needs a sidekick. Enter Web Workers — your app’s behind-the-scenes performance booster.
+What is Web Worker ?
+We know that Javascript is a single threaded language, therefore, multiple scripts cannot be executed at the same time as it has been designed to work in a single threaded environment.
+Consider a scenario in which you need to perform numerous tasks, such as pre-processing a huge quantity of API data, Unit conversion, and so on now during these computations, CPU usage will be high and Javascript will cause your web page to hang." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/blog/web-workers/" />
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/10844/0*7LLW5HcaI43eq0nL" /><meta property="article:section" content="blog" />
+
+
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://cdn-images-1.medium.com/max/10844/0*7LLW5HcaI43eq0nL" />
+<meta name="twitter:title" content="Unleashing Web Workers in Angular: A Developer’s Guide"/>
+<meta name="twitter:description" content="Unleashing Web Workers in Angular: A Developer’s Guide
+Angular is powerful. But even power needs a sidekick. Enter Web Workers — your app’s behind-the-scenes performance booster.
+What is Web Worker ?
+We know that Javascript is a single threaded language, therefore, multiple scripts cannot be executed at the same time as it has been designed to work in a single threaded environment.
+Consider a scenario in which you need to perform numerous tasks, such as pre-processing a huge quantity of API data, Unit conversion, and so on now during these computations, CPU usage will be high and Javascript will cause your web page to hang."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blogs",
+      "item": "http://localhost:1313/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Unleashing Web Workers in Angular: A Developer’s Guide",
+      "item": "http://localhost:1313/blog/web-workers/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Unleashing Web Workers in Angular: A Developer’s Guide",
+  "name": "Unleashing Web Workers in Angular: A Developer’s Guide",
+  "description": "Unleashing Web Workers in Angular: A Developer’s Guide Angular is powerful. But even power needs a sidekick. Enter Web Workers — your app’s behind-the-scenes performance booster.\nWhat is Web Worker ? We know that Javascript is a single threaded language, therefore, multiple scripts cannot be executed at the same time as it has been designed to work in a single threaded environment.\nConsider a scenario in which you need to perform numerous tasks, such as pre-processing a huge quantity of API data, Unit conversion, and so on now during these computations, CPU usage will be high and Javascript will cause your web page to hang.\n",
+  "keywords": [
+    "Angular", "Typescript", "Multithreading"
+  ],
+  "articleBody": "Unleashing Web Workers in Angular: A Developer’s Guide Angular is powerful. But even power needs a sidekick. Enter Web Workers — your app’s behind-the-scenes performance booster.\nWhat is Web Worker ? We know that Javascript is a single threaded language, therefore, multiple scripts cannot be executed at the same time as it has been designed to work in a single threaded environment.\nConsider a scenario in which you need to perform numerous tasks, such as pre-processing a huge quantity of API data, Unit conversion, and so on now during these computations, CPU usage will be high and Javascript will cause your web page to hang.\nPhoto by Erik Mclean on Unsplash\nWeb Worker was created to address this crucial issue. Web Worker is an asynchronous feature for web pages that permits job execution in the background, separately from main thread and the webpage’s user interface. It kind of gives users the benefit of multithreaded programming using Javascript.\nUsage: Now Lets see how we can use this feature with angular components\nA web worker is placed in a file with extension *.worker.ts e.g.: ./src/app/app.worker.ts\nThis file includes a TypeScript reference and a listener that may be invoked to begin working on the worker thread. And once the data has been processed, the result is then passed using postMessage.\n/// addEventListener('message', ({ data }) =\u003e { const result = `worker processes the ${data}`; postMessage(result); }); The file includes a TypeScript reference and a listener that may be invoked to begin working on the worker thread. And once the data has been processed, the result is then passed using postMessage.\nNow, we can reference this web-worker in any of our applications component or service. The below code first checks if workers are supported, and if they are, it creates a new instance and calls the worker, instructing it to begin working.\nif (typeof Worker !== 'undefined') { // Create a new instance const worker = new Worker('./app.worker', { type: 'module' }); // Send data to the worker worker.postMessage('Input to Worker'); // Receive data from the worker worker.onmessage = ({ data }) =\u003e { console.log(`Output message received: ${data}`); }; } else { console.log(\"Web Workers not supported in this environment.\") } Example Use Case: Lets say we have this following code to increment variables “countDollars” and “countRupees” and the function “incRupees” takes 5 seconds to increment the variable “countRupees”\nDollars: {{countDollars}} | Rupees: {{countRupees}} Dollars Rupees export class CurrencyComponent implements OnInit { private countDollars = 0; private countRupees = 0; constructor() { } incDollars() { this.countDollars++; } incRupees() { const start = Date.now(); // 5 second delay while (Date.now() \u003c start + 5000) {} this.countRupees++; } } If we run the above code , we’ll see that after clicking “Rupees” button(which takes 5 seconds to update), wee won’t be able to make any changes to the UI, i.e. if we want to update/Click the “Dollars” button, we will have to wait for 5 seconds to do that. 😟\nSolution: Now Lets try to solve this situation using web workers\n/// addEventListener('message', ({ data }) =\u003e { const start = Date.now(); while (Date.now() \u003c start + 5000) { } // do all the processing of data let updatedData = data + 1; postMessage(updatedData); }); export class UpdateCurrencyService { async incRupees(counter: number, updateCounter: (value: number) =\u003e void) { if (typeof Worker !== 'undefined') { const worker = new Worker('../workers/update-data.worker', { type: 'module' }); worker.onmessage = ({ data }) =\u003e { updateCounter(data); }; worker.postMessage(counter); } } } export class CurrencyComponent implements OnInit { private countDollars = 0; private countRupees = 0; constructor(private updateCurrencyService: UpdateCurrencyService) { } incDollars() { this.countDollars++; } async incRupees() { await this.updateCurrencyService.incRupees(this.countRupees, (value: number) =\u003e this.countRupees = value); } } Now, if we try and run this example we can see that out UI isn’t blocked anymore. Even when the Rupees update is delayed by 5 seconds , we can still make clicks to the UI and update Dollars variable. 🙂\nKey features: Performance Gains: Since it runs heavy computations on a different thread than Main UI thread, it boosts performance of our application.\nScaling Applications Handle growing complexity without sacrificing speed.\nOptimize Communication: Minimize data transferred between the main thread and workers to reduce overhead\nLimitations: While we saw that Web Workers are powerful and can be useful, they do come with some limitations:\nNo Access to DOM: Web Workers cannot manipulate the UI dom directly.\nResource Overhead: Creating too many workers can increase memory usage.\nLimited Support for Dependencies: All the External libraries used needs to be bundled or imported explicitly.\nConclusions: Web Workers can be a valuable tool in Angular for improving application performance and user experience. By offloading heavy computations to a background thread, they ensure a smoother, more responsive interface. While implementing Web Workers requires careful consideration of their limitations and best practices, the performance gains often make them worth the effort.\nStart experimenting with Web Workers in your Angular projects today to see how they can enhance the efficiency of your application.\nTill then, Keep Learning :-)\n",
+  "wordCount" : "852",
+  "inLanguage": "en",
+  "image":"https://cdn-images-1.medium.com/max/10844/0*7LLW5HcaI43eq0nL","datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/blog/web-workers/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Shlok Nangia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header sticky-header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Shlok Nangia (Alt + H)">Shlok Nangia</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/blog" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/experience" title="Experience">
+                    <span>Experience</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/blog/">Blogs</a></div>
+    <h1 class="post-title">
+      Unleashing Web Workers in Angular: A Developer’s Guide
+    </h1>
+    <div class="post-meta">
+
+
+Jun 2025
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="lazy" src="https://cdn-images-1.medium.com/max/10844/0*7LLW5HcaI43eq0nL" alt="">
+        
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">‎ Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#unleashing-web-workers-in-angular-a-developers-guide" aria-label="Unleashing Web Workers in Angular: A Developer’s Guide">Unleashing Web Workers in Angular: A Developer’s Guide</a><ul>
+                        
+                <li>
+                    <a href="#what-is-web-worker-" aria-label="What is Web Worker ?">What is Web Worker ?</a></li></ul>
+                </li>
+                <li>
+                    <a href="#web-worker-was-created-to-address-this-crucial-issue" aria-label="Web Worker was created to address this crucial issue.">Web Worker was created to address this crucial issue.</a><ul>
+                        
+                <li>
+                    <a href="#usage" aria-label="Usage:"><strong>Usage:</strong></a></li>
+                <li>
+                    <a href="#example-use-case" aria-label="Example Use Case:"><strong>Example Use Case:</strong></a></li>
+                <li>
+                    <a href="#solution" aria-label="Solution:"><strong>Solution:</strong></a></li>
+                <li>
+                    <a href="#key-features" aria-label="Key features:"><strong>Key features:</strong></a></li>
+                <li>
+                    <a href="#limitations" aria-label="Limitations:"><strong>Limitations:</strong></a></li>
+                <li>
+                    <a href="#conclusions" aria-label="Conclusions:"><strong>Conclusions:</strong></a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="unleashing-web-workers-in-angular-a-developers-guide">Unleashing Web Workers in Angular: A Developer’s Guide<a hidden class="anchor" aria-hidden="true" href="#unleashing-web-workers-in-angular-a-developers-guide">#</a></h1>
+<p>Angular is powerful. But even power needs a sidekick. Enter Web Workers — your app’s behind-the-scenes performance booster.</p>
+<h2 id="what-is-web-worker-">What is Web Worker ?<a hidden class="anchor" aria-hidden="true" href="#what-is-web-worker-">#</a></h2>
+<p>We know that Javascript is a single threaded language, therefore, multiple scripts cannot be executed at the same time as it has been designed to work in a single threaded environment.</p>
+<p>Consider a scenario in which you need to perform numerous tasks, such as pre-processing a huge quantity of API data, Unit conversion, and so on now during these computations, CPU usage will be high and Javascript will cause your web page to hang.</p>
+<p><img loading="lazy" src="https://cdn-images-1.medium.com/max/10844/0*7LLW5HcaI43eq0nL" alt="Photo by Erik Mclean on Unsplash"  />
+<em>Photo by <a href="https://unsplash.com/@introspectivedsgn?utm_source=medium&amp;utm_medium=referral">Erik Mclean</a> on <a href="https://unsplash.com?utm_source=medium&amp;utm_medium=referral">Unsplash</a></em></p>
+<blockquote>
+<h1 id="web-worker-was-created-to-address-this-crucial-issue">Web Worker was created to address this crucial issue.<a hidden class="anchor" aria-hidden="true" href="#web-worker-was-created-to-address-this-crucial-issue">#</a></h1></blockquote>
+<p>Web Worker is an asynchronous feature for web pages that permits job execution in the background, <strong>separately from main thread</strong> and the webpage’s user interface. It kind of gives users the benefit of multithreaded programming using Javascript.</p>
+<p><img loading="lazy" src="https://cdn-images-1.medium.com/max/2000/1*gqdzDdCN5ZJJyqFhxVAFow.png" alt=""  />
+</p>
+<h2 id="usage"><strong>Usage:</strong><a hidden class="anchor" aria-hidden="true" href="#usage">#</a></h2>
+<p>Now Lets see how we can use this feature with angular components</p>
+<p>A web worker is placed in a file with extension *<strong>.worker.ts</strong> e.g.: <strong>./src/app/app.worker.ts</strong></p>
+<p>This file includes a TypeScript reference and a listener that may be invoked to begin working on the worker thread. And once the data has been processed, the result is then passed using postMessage.</p>
+<pre><code>/// &lt;reference lib=&quot;webworker&quot; /&gt;
+
+addEventListener('message', ({ data }) =&gt; {
+  const result = `worker processes the ${data}`;
+  postMessage(result);
+});
+</code></pre>
+<p>The file includes a TypeScript reference and a listener that may be invoked to begin working on the worker thread. And once the data has been processed, the result is then passed using postMessage.</p>
+<p>Now, we can reference this web-worker in any of our applications component or service.
+The below code first checks if workers are supported, and if they are, it creates a new instance and calls the worker, instructing it to begin working.</p>
+<pre><code>if (typeof Worker !== 'undefined') {
+  // Create a new instance
+  const worker = new Worker('./app.worker', { type: 'module' });
+  
+  // Send data to the worker
+  worker.postMessage('Input to Worker');
+
+  // Receive data from the worker
+  worker.onmessage = ({ data }) =&gt; {
+    console.log(`Output message received: ${data}`);
+  };
+
+} else {
+  console.log(&quot;Web Workers not supported in this environment.&quot;)
+}
+</code></pre>
+<h2 id="example-use-case"><strong>Example Use Case:</strong><a hidden class="anchor" aria-hidden="true" href="#example-use-case">#</a></h2>
+<p>Lets say we have this following code to increment variables “countDollars” and “countRupees” and the function “incRupees” takes 5 seconds to increment the variable “countRupees”</p>
+<pre><code>&lt;label&gt;
+   Dollars: {{countDollars}} | Rupees: {{countRupees}}
+&lt;/label&gt;
+
+&lt;div&gt;
+  &lt;button (click)=&quot;incDollars()&quot; 
+              color=&quot;primary&quot;&gt;Dollars&lt;/button&gt;
+
+  &lt;button (click)=&quot;incRupees()&quot; 
+              color=&quot;secondary&quot;&gt;Rupees&lt;/button&gt;
+&lt;/div&gt;
+
+export class CurrencyComponent implements OnInit {
+
+  private countDollars = 0;
+  private countRupees = 0;
+
+  constructor() {
+  }
+
+  incDollars() {
+    this.countDollars++;
+  }
+
+  incRupees() {
+    const start = Date.now();
+    // 5 second delay
+    while (Date.now() &lt; start + 5000) {}
+    this.countRupees++;
+  }
+}
+</code></pre>
+<p>If we run the above code , we’ll see that after clicking “Rupees” button(which takes 5 seconds to update), wee won’t be able to make any changes to the UI, i.e. if we want to update/Click the “Dollars” button, we will have to wait for 5 seconds to do that. 😟</p>
+<h2 id="solution"><strong>Solution:</strong><a hidden class="anchor" aria-hidden="true" href="#solution">#</a></h2>
+<p>Now Lets try to solve this situation using web workers</p>
+<pre><code> /// &lt;reference lib=&quot;webworker&quot; /&gt;
+
+addEventListener('message', ({ data }) =&gt; {
+  const start = Date.now();
+  while (Date.now() &lt; start + 5000) {
+  }
+  // do all the processing of data
+  let updatedData = data + 1;
+  postMessage(updatedData);
+});
+
+export class UpdateCurrencyService {
+
+  async incRupees(counter: number, 
+                   updateCounter: (value: number) =&gt; void) {
+    if (typeof Worker !== 'undefined') {
+      const worker = 
+          new Worker('../workers/update-data.worker', { type: 'module' });
+
+      worker.onmessage = ({ data }) =&gt; {
+        updateCounter(data);
+      };
+
+      worker.postMessage(counter);
+    }
+  }
+}
+
+export class CurrencyComponent implements OnInit {
+
+  private countDollars = 0;
+  private countRupees = 0;
+
+  constructor(private updateCurrencyService: UpdateCurrencyService) {
+  }
+
+  incDollars() {
+    this.countDollars++;
+  }
+
+  async incRupees() {
+    await this.updateCurrencyService.incRupees(this.countRupees, 
+               (value: number) =&gt; this.countRupees = value);
+  }
+
+}
+</code></pre>
+<p>Now, if we try and run this example we can see that out UI isn&rsquo;t blocked anymore. Even when the Rupees update is delayed by 5 seconds , we can still make clicks to the UI and update Dollars variable. 🙂</p>
+<h2 id="key-features"><strong>Key features:</strong><a hidden class="anchor" aria-hidden="true" href="#key-features">#</a></h2>
+<ul>
+<li>
+<p><strong>Performance Gains:</strong> Since it runs heavy computations on a different thread than Main UI thread, it boosts performance of our application.</p>
+</li>
+<li>
+<p>Scaling Applications Handle growing complexity without sacrificing speed.</p>
+</li>
+<li>
+<p><strong>Optimize Communication:</strong> Minimize data transferred between the main thread and workers to reduce overhead</p>
+</li>
+</ul>
+<h2 id="limitations"><strong>Limitations:</strong><a hidden class="anchor" aria-hidden="true" href="#limitations">#</a></h2>
+<p>While we saw that Web Workers are powerful and can be useful, they do come with some limitations:</p>
+<ul>
+<li>
+<p><strong>No Access to DOM:</strong> Web Workers cannot manipulate the UI dom directly.</p>
+</li>
+<li>
+<p><strong>Resource Overhead:</strong> Creating too many workers can increase memory usage.</p>
+</li>
+<li>
+<p><strong>Limited Support for Dependencies:</strong> All the External libraries used needs to be bundled or imported explicitly.</p>
+</li>
+</ul>
+<h2 id="conclusions"><strong>Conclusions:</strong><a hidden class="anchor" aria-hidden="true" href="#conclusions">#</a></h2>
+<p>Web Workers can be a valuable tool in Angular for improving application performance and user experience. By offloading heavy computations to a background thread, they ensure a smoother, more responsive interface. While implementing Web Workers requires careful consideration of their limitations and best practices, the performance gains often make them worth the effort.</p>
+<p>Start experimenting with Web Workers in your Angular projects today to see how they can enhance the efficiency of your application.</p>
+<p>Till then, Keep Learning :-)</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/angular/">Angular</a></li>
+      <li><a href="http://localhost:1313/tags/typescript/">TypeScript</a></li>
+      <li><a href="http://localhost:1313/tags/multithreading/">Multithreading</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2025 <a href="http://localhost:1313/">Shlok Nangia</a></span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

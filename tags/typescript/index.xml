@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>TypeScript on Shlok Nangia</title>
+    <link>http://localhost:1313/tags/typescript/</link>
+    <description>Recent content in TypeScript on Shlok Nangia</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="http://localhost:1313/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unleashing Web Workers in Angular: A Developer’s Guide</title>
+      <link>http://localhost:1313/blog/web-workers/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/web-workers/</guid>
+      <description>&lt;h1 id=&#34;unleashing-web-workers-in-angular-a-developers-guide&#34;&gt;Unleashing Web Workers in Angular: A Developer’s Guide&lt;/h1&gt;
+&lt;p&gt;Angular is powerful. But even power needs a sidekick. Enter Web Workers — your app’s behind-the-scenes performance booster.&lt;/p&gt;
+&lt;h2 id=&#34;what-is-web-worker-&#34;&gt;What is Web Worker ?&lt;/h2&gt;
+&lt;p&gt;We know that Javascript is a single threaded language, therefore, multiple scripts cannot be executed at the same time as it has been designed to work in a single threaded environment.&lt;/p&gt;
+&lt;p&gt;Consider a scenario in which you need to perform numerous tasks, such as pre-processing a huge quantity of API data, Unit conversion, and so on now during these computations, CPU usage will be high and Javascript will cause your web page to hang.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Obsidian Publish using GitHub Action</title>
+      <link>http://localhost:1313/projects/obsidian-publish-github-action/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/obsidian-publish-github-action/</guid>
+      <description>A custom GitHub Action to publish Obsidian notes as a website</description>
+    </item>
+    
+    <item>
+      <title>Kindle to Notion</title>
+      <link>http://localhost:1313/projects/kindle-to-notion/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/kindle-to-notion/</guid>
+      <description>A way to seamlessly transfer your Kindle highlights to Notion Database!</description>
+    </item>
+    
+    <item>
+      <title>Software Engineer</title>
+      <link>http://localhost:1313/experience/5_slb/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/experience/5_slb/</guid>
+      <description>SLB (Formerly, Schlumberger) | Pune, India</description>
+    </item>
+    
+  </channel>
+</rss>
